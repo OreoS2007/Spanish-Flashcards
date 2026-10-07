@@ -17,3 +17,8 @@
 - **まとめテスト**：5ユニットごとに4択20問（苦手優先、同レベル・同品詞・意味が重ならない誤答）。間違いは ✖ で Review へ。結果画面に「テストに出なかった語」の一覧、タップで詳細シート。
 - 追加分の再点検：フレーズの例文が単語カードと同じだったもの18件を差し替え、意味・類義語の精度を修正。
 - **Claude Code へ移行**（このフォルダを作成。CLAUDE.md、docs/、チェックツール、ブラウザテスト、一括追加ツール）。
+
+## 2026-10-07（Claude Code）
+- Node.js・Git を導入し、git で履歴管理を開始。
+- B2 batch 2 を追加：単語 304、フレーズ（つなぎ言葉）14、計318枚。同根語 +171、偽の友 +3（asumir, exigir, sensato）。IRR に8動詞（acoger, escoger, exigir, distinguir, perseguir, evaluar, ampliar ほか）。
+- バッチは `data/batches/b2-batch2.txt`（1行1語の下書き）を `b2-batch2.js` が変換する形。`git checkout` で index.html が CRLF になると add-batch が失敗するので、このリポジトリは `core.autocrlf false`。
