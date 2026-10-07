@@ -1,0 +1,310 @@
+colapso|m|collapse|Hubo un colapso del tráfico en el centro.|There was a traffic collapse downtown.|hundimiento||c
+consenso|m|consensus|Llegaron a un consenso después de horas.|They reached a consensus after hours.|acuerdo|desacuerdo|c
+contexto|m|context|Entiendo la palabra por el contexto.|I understand the word from the context.||c
+declive|m|decline|El pueblo está en declive.|The village is in decline.|descenso|auge
+diagnóstico|m|diagnosis|El diagnóstico del médico fue claro.|The doctor's diagnosis was clear.||c
+dominio|m|command, mastery; domain|Tiene un buen dominio del inglés.|He has a good command of English.|control|
+elogio|m|praise, compliment|Recibió muchos elogios por su trabajo.|She received a lot of praise for her work.|alabanza|crítica
+emprendedor|m|entrepreneur|Mi tía es una emprendedora de éxito.|My aunt is a successful entrepreneur.||
+entusiasmo|m|enthusiasm|Habla con mucho entusiasmo.|He speaks with a lot of enthusiasm.|ilusión|desgana|c
+fallecimiento|m|death, passing|Comunicaron el fallecimiento del actor.|They announced the actor's death.|muerte|nacimiento
+homenaje|m|tribute|Hicieron un homenaje al profesor.|They paid tribute to the teacher.||
+horizonte|m|horizon|El sol se pone en el horizonte.|The sun sets on the horizon.||c
+incremento|m|increase|Hay un incremento de precios.|There is an increase in prices.|aumento|descenso|c
+ingenio|m|wit, ingenuity|Resolvió el problema con mucho ingenio.|He solved the problem with great ingenuity.|talento|
+inicio|m|start, beginning|El inicio de la película es lento.|The start of the film is slow.|comienzo|final
+legado|m|legacy|Dejó un legado importante.|He left an important legacy.|herencia|
+ministerio|m|ministry|Trabaja en el ministerio de educación.|She works at the ministry of education.||c
+mito|m|myth|Es un mito que el café quita el sueño.|It is a myth that coffee takes away sleep.||c
+prejuicio|m|prejudice|Tiene muchos prejuicios.|He has a lot of prejudices.||c
+prestigio|m|prestige|La universidad tiene mucho prestigio.|The university has a lot of prestige.|fama|c
+pretexto|m|excuse, pretext|Usó el trabajo como pretexto.|He used work as an excuse.|excusa|c
+privilegio|m|privilege|Vivir aquí es un privilegio.|Living here is a privilege.||c
+rango|m|rank, range|Tiene el rango de capitán.|He has the rank of captain.|categoría|
+reconocimiento|m|recognition|Merece un reconocimiento por su esfuerzo.|She deserves recognition for her effort.||c
+rescate|m|rescue; ransom|El rescate duró dos días.|The rescue lasted two days.||
+rigor|m|rigour|Trabaja con mucho rigor.|He works with great rigour.||c
+testimonio|m|testimony|Su testimonio ayudó mucho.|His testimony helped a lot.||c
+tono|m|tone|No me gusta tu tono.|I don't like your tone.||c
+veredicto|m|verdict|El juez leyó el veredicto.|The judge read the verdict.||c
+afición|f|hobby; fans|Mi afición es la fotografía.|My hobby is photography.|pasatiempo|
+apertura|f|opening|La apertura de la tienda es a las diez.|The shop's opening is at ten.|inauguración|cierre
+asamblea|f|assembly, meeting|La asamblea empieza a las seis.|The meeting starts at six.|reunión|c
+asociación|f|association|Es miembro de una asociación de vecinos.|He is a member of a neighbours' association.||c
+aspiración|f|aspiration|Su aspiración es ser médico.|Her aspiration is to be a doctor.|sueño|c
+batalla|f|battle|Fue una batalla muy larga.|It was a very long battle.|lucha|c
+colaboración|f|collaboration|Gracias por tu colaboración.|Thanks for your collaboration.|ayuda|c
+competición|f|competition|La competición empieza mañana.|The competition starts tomorrow.|concurso|c
+comprensión|f|understanding; comprehension|Muchas gracias por tu comprensión.|Thank you very much for your understanding.||c
+cooperación|f|cooperation|Pedimos la cooperación de todos.|We ask for everyone's cooperation.|colaboración|c
+corrupción|f|corruption|La corrupción es un problema grave.|Corruption is a serious problem.||c
+denuncia|f|report, complaint|Puso una denuncia en la comisaría.|She filed a report at the police station.||
+depresión|f|depression|Sufrió una depresión.|He suffered from depression.||c
+dignidad|f|dignity|Merece vivir con dignidad.|He deserves to live with dignity.||c
+discriminación|f|discrimination|La discriminación es injusta.|Discrimination is unfair.||c
+distribución|f|distribution|La distribución de los libros es gratuita.|The distribution of the books is free.|reparto|c
+epidemia|f|epidemic|Hay una epidemia de gripe.|There is a flu epidemic.||c
+exploración|f|exploration|La exploración de la cueva duró horas.|The exploration of the cave lasted hours.||c
+flexibilidad|f|flexibility|Mi trabajo tiene mucha flexibilidad.|My job has a lot of flexibility.||c
+generosidad|f|generosity|Agradezco tu generosidad.|I appreciate your generosity.||c
+herencia|f|inheritance|Recibió una herencia de su abuelo.|He received an inheritance from his grandfather.||
+imaginación|f|imagination|Tiene mucha imaginación.|She has a lot of imagination.||c
+impaciencia|f|impatience|Espera con mucha impaciencia.|He waits with great impatience.||paciencia|c
+incertidumbre|f|uncertainty|Vivimos con mucha incertidumbre.|We live with a lot of uncertainty.|duda|certeza
+infraestructura|f|infrastructure|Faltan infraestructuras en el pueblo.|The village lacks infrastructure.||c
+innovación|f|innovation|La innovación es clave para la empresa.|Innovation is key for the company.|novedad|c
+inquietud|f|concern, restlessness|Siento cierta inquietud.|I feel a certain unease.|preocupación|tranquilidad
+integración|f|integration|La integración de los alumnos es importante.|The integration of the students is important.||c
+integridad|f|integrity|Es un hombre de gran integridad.|He is a man of great integrity.||c
+inversión|f|investment|Es una buena inversión.|It is a good investment.||c
+jerarquía|f|hierarchy|Hay una jerarquía clara en la empresa.|There is a clear hierarchy in the company.||c
+liberación|f|liberation, release|Celebraron la liberación de los presos.|They celebrated the release of the prisoners.||c
+licencia|f|licence, permit|Necesitas una licencia para pescar.|You need a licence to fish.|permiso|c
+madurez|f|maturity|Actúa con mucha madurez.|He acts with great maturity.||inmadurez
+mentalidad|f|mentality, mindset|Tiene una mentalidad muy abierta.|He has a very open mind.||c
+minoría|f|minority|Solo una minoría estuvo de acuerdo.|Only a minority agreed.||mayoría|c
+moral|f|morale; morals|Tiene la moral muy alta.|He has very high morale.|ánimo|
+motivación|f|motivation|Me falta motivación para estudiar.|I lack motivation to study.|ganas|c
+nacionalidad|f|nationality|¿Cuál es tu nacionalidad?|What is your nationality?||c
+nostalgia|f|nostalgia|Siento nostalgia de mi infancia.|I feel nostalgic for my childhood.||c
+oposición|f|opposition|Hay mucha oposición al proyecto.|There is a lot of opposition to the project.||c
+prohibición|f|ban, prohibition|Hay una prohibición de fumar.|There is a smoking ban.||c
+rebelión|f|rebellion|Hubo una rebelión en el país.|There was a rebellion in the country.||c
+recuperación|f|recovery|Su recuperación es rápida.|His recovery is quick.||c
+reflexión|f|reflection, thought|Necesito un momento de reflexión.|I need a moment of reflection.||c
+resistencia|f|resistance; endurance|Tiene mucha resistencia física.|He has a lot of physical endurance.||c
+sanción|f|penalty, sanction|El club recibió una sanción.|The club received a penalty.|multa|c
+solidaridad|f|solidarity|La solidaridad es muy importante.|Solidarity is very important.||c
+sospecha|f|suspicion|Tengo una sospecha.|I have a suspicion.||c
+subida|f|rise; climb|Hay una subida de precios.|There is a rise in prices.|aumento|bajada
+sustancia|f|substance|Es una sustancia peligrosa.|It is a dangerous substance.||c
+tentación|f|temptation|Resistió la tentación.|He resisted the temptation.||c
+traición|f|betrayal|Fue una traición muy dolorosa.|It was a very painful betrayal.||lealtad
+visión|f|vision; view|Tiene una visión muy clara del futuro.|She has a very clear vision of the future.||c
+abrumar|v|to overwhelm|El trabajo me abruma.|The work overwhelms me.|agobiar|
+acosar|v|to harass, hound|Los periodistas acosan al actor.|The journalists hound the actor.||
+adjuntar|v|to attach, enclose|Adjunto el documento al correo.|I attach the document to the email.||
+agotar|v|to exhaust, use up|El viaje me agotó.|The trip exhausted me.|cansar|
+agrupar|v|to group|Agrupa las palabras por tema.|Group the words by topic.|juntar|separar
+aludir|v|to allude, refer|No aludió a ese tema.|He did not refer to that subject.|referirse|
+anular|v|to cancel; to annul|Tengo que anular la reserva.|I have to cancel the reservation.|cancelar|
+apartar|v|to move away, set aside|Aparta la silla de la puerta.|Move the chair away from the door.|separar|acercar
+asombrar|v|to amaze|Su memoria me asombra.|His memory amazes me.|sorprender|
+aspirar|v|to aspire; to inhale|Aspira a ser médico.|She aspires to be a doctor.|desear|c
+atribuir|v|to attribute|Le atribuyen todo el éxito.|They attribute all the success to him.||c
+autorizar|v|to authorise|Mis padres me autorizan a salir.|My parents authorise me to go out.|permitir|prohibir|c
+basar|v|to base|Basa su opinión en los datos.|He bases his opinion on the data.||
+ceder|v|to give way; to yield|No quiere ceder en nada.|He doesn't want to give way on anything.||c
+centrarse|v|to focus|Céntrate en el examen.|Focus on the exam.|concentrarse|
+circular|v|to circulate; to drive|Los coches circulan por la derecha.|Cars drive on the right.||c
+combatir|v|to fight, combat|Hay que combatir la pobreza.|Poverty has to be fought.|luchar|c
+complicar|v|to complicate|No compliques las cosas.|Don't complicate things.||simplificar|c
+componer|v|to compose; to make up|Compuso una canción muy bonita.|He composed a very pretty song.||
+concebir|v:i|to conceive|No puedo concebir esa idea.|I can't conceive of that idea.|imaginar|c
+conceder|v|to grant|Le concedieron una beca.|They granted her a scholarship.|otorgar|
+condenar|v|to condemn; to sentence|El juez condenó al ladrón.|The judge sentenced the thief.||absolver|c
+consolidar|v|to consolidate|Quiere consolidar su posición.|He wants to consolidate his position.|reforzar|c
+constatar|v|to confirm, verify|Constatamos que hay un error.|We confirm that there is an error.|comprobar|c
+consultar|v|to consult|Consulta el diccionario.|Look it up in the dictionary.||c
+contagiar|v|to infect, pass on|Se contagió de su hermano.|He caught it from his brother.||c
+contemplar|v|to contemplate; to watch|Contemplamos el mar desde el balcón.|We watched the sea from the balcony.|mirar|c
+contrastar|v|to contrast; to check|Hay que contrastar la información.|The information has to be checked.|comparar|c
+convivir|v|to live together|Convivo con dos compañeros.|I live with two flatmates.||
+cooperar|v|to cooperate|Todos deben cooperar.|Everyone must cooperate.|colaborar|c
+debatir|v|to debate|Vamos a debatir el tema.|We are going to debate the subject.|discutir|c
+decepcionar|v|to disappoint|No quiero decepcionarte.|I don't want to disappoint you.||c
+descartar|v|to rule out, discard|Descartamos esa opción.|We rule out that option.|rechazar|
+desconfiar|v|to distrust|Desconfío de los desconocidos.|I distrust strangers.||confiar
+disculpar|v|to excuse, forgive|Disculpa el retraso.|Excuse the delay.|perdonar|
+disolver|v:ue|to dissolve|Disuelve el azúcar en agua.|Dissolve the sugar in water.||c
+disparar|v|to shoot|El policía disparó al aire.|The policeman shot into the air.||
+distraer|v|to distract|No me distraigas, por favor.|Don't distract me, please.||
+elaborar|v|to make, produce|Elaboran queso en esta granja.|They make cheese on this farm.|preparar|
+emocionar|v|to move, thrill|La película me emocionó mucho.|The film moved me a lot.||c
+empeorar|v|to get worse|El tiempo empeora por la tarde.|The weather gets worse in the afternoon.||mejorar
+emprender|v|to start, undertake|Quiere emprender un negocio.|He wants to start a business.|iniciar|
+estallar|v|to explode, break out|Estalló una guerra en la región.|A war broke out in the region.|explotar|
+excluir|v|to exclude|No excluyas a nadie.|Don't exclude anyone.||incluir|c
+exhibir|v|to exhibit, show|Exhiben cuadros en la galería.|They exhibit paintings in the gallery.|mostrar|c
+expulsar|v|to expel|Expulsaron al jugador del campo.|They sent the player off the pitch.||c
+extraer|v|to extract|Extraen petróleo del mar.|They extract oil from the sea.||c
+facilitar|v|to make easier; to provide|Internet facilita la comunicación.|The internet makes communication easier.|ayudar|dificultar|c
+fallecer|v:zc|to pass away|Su abuelo falleció ayer.|His grandfather passed away yesterday.|morir|nacer
+favorecer|v:zc|to favour; to suit|Ese color te favorece.|That colour suits you.|beneficiar|perjudicar|c
+fingir|v|to pretend|Finge estar enfermo.|He pretends to be ill.|simular|
+gobernar|v:ie|to govern|Ese partido gobierna el país.|That party governs the country.|dirigir|c
+habitar|v|to inhabit, live in|Muchas familias habitan este barrio.|Many families live in this neighbourhood.|vivir|
+herir|v:ie|to wound, hurt|La caída lo hirió en la pierna.|The fall wounded him in the leg.|lastimar|
+humillar|v|to humiliate|No me humilles delante de todos.|Don't humiliate me in front of everyone.||c
+implicar|v|to involve, imply|Este trabajo implica mucho esfuerzo.|This job involves a lot of effort.|suponer|c
+inclinarse|v|to lean, bend|Se inclinó para recoger el libro.|He bent down to pick up the book.||c
+ingresar|v|to deposit; to be admitted|Ingreso el dinero en mi cuenta.|I deposit the money into my account.||
+invadir|v|to invade|Los turistas invaden la ciudad.|Tourists invade the city.||c
+irritar|v|to irritate|El humo me irrita los ojos.|The smoke irritates my eyes.|molestar|c
+jurar|v|to swear|Te juro que es verdad.|I swear it is true.||
+juzgar|v|to judge|No juzgues a la gente.|Don't judge people.||c
+modificar|v|to modify|Modifica el texto si quieres.|Modify the text if you want.|cambiar|c
+narrar|v|to narrate|Narra la historia con humor.|He narrates the story with humour.|contar|c
+oprimir|v|to oppress; to press|Ese gobierno oprime a la gente.|That government oppresses people.||c
+pactar|v|to agree on, make a deal|Pactaron un precio justo.|They agreed on a fair price.|acordar|
+penetrar|v|to penetrate, enter|La luz penetra por la ventana.|The light comes in through the window.|entrar|c
+permanecer|v:zc|to remain, stay|Permanecimos en silencio.|We stayed in silence.|quedarse|
+persuadir|v|to persuade|Quiero persuadirte de venir.|I want to persuade you to come.|convencer|c
+presenciar|v|to witness|Presenciaron un accidente.|They witnessed an accident.|ver|
+presionar|v|to press, pressure|No me presiones.|Don't pressure me.||c
+prescindir|v|to do without|No puedo prescindir del móvil.|I can't do without my phone.||
+proseguir|v:i|to continue, carry on|Prosiguieron el viaje al día siguiente.|They continued the trip the next day.|continuar|
+provenir|v|to come from|Esta palabra proviene del árabe.|This word comes from Arabic.|venir|
+proyectar|v|to plan; to project|Proyectan una película en el parque.|They are showing a film in the park.||c
+reanudar|v|to resume|Reanudamos el trabajo el lunes.|We resume work on Monday.|retomar|
+rebajar|v|to reduce, lower|Rebajaron el precio de los zapatos.|They lowered the price of the shoes.|reducir|subir
+recurrir|v|to resort to; to appeal|Recurre a sus padres cuando necesita dinero.|He turns to his parents when he needs money.||
+redactar|v|to write up, draft|Redacta un informe sobre el viaje.|Write up a report about the trip.|escribir|c
+reemplazar|v|to replace|Hay que reemplazar la bombilla.|The bulb has to be replaced.|sustituir|
+referirse|v:ie|to refer|Me refiero a lo que dijiste ayer.|I am referring to what you said yesterday.|aludir|
+reflexionar|v|to reflect, think over|Necesito reflexionar sobre esto.|I need to think this over.|pensar|c
+rendir|v:i|to perform; to yield|Rindo mejor por la mañana.|I perform better in the morning.||
+renunciar|v|to give up; to resign|Renunció a su trabajo.|He resigned from his job.|dejar|
+reprochar|v|to reproach|Me reprocha que no la llame.|She reproaches me for not calling her.||c
+respaldar|v|to back, support|Todos respaldan el plan.|Everyone backs the plan.|apoyar|
+retar|v|to challenge|Me retó a una carrera.|He challenged me to a race.|desafiar|
+sacrificar|v|to sacrifice|Sacrificó su tiempo libre por el trabajo.|He sacrificed his free time for work.||c
+sembrar|v:ie|to sow, plant|Siembran trigo en el campo.|They sow wheat in the field.||
+sostener|v|to hold; to support|Sostén esto un momento.|Hold this for a moment.|aguantar|
+suavizar|v|to soften|Esta crema suaviza la piel.|This cream softens the skin.||
+trazar|v|to draw, trace|Traza una línea recta.|Draw a straight line.|dibujar|
+triunfar|v|to succeed, triumph|Quiere triunfar como cantante.|She wants to succeed as a singer.||fracasar
+ubicar|v|to locate, place|¿Puedes ubicar la calle en el mapa?|Can you locate the street on the map?|situar|
+unificar|v|to unify|Quieren unificar los dos grupos.|They want to unify the two groups.|unir|c
+accesible|adj|accessible|El museo es accesible para todos.|The museum is accessible to everyone.||c
+adverso|adj|adverse, unfavourable|Hubo condiciones adversas.|There were adverse conditions.|contrario|favorable|c
+afortunado|adj|lucky, fortunate|Es una persona muy afortunada.|He is a very lucky person.|suertudo|desafortunado
+alarmante|adj|alarming|La situación es alarmante.|The situation is alarming.||c
+ambiguo|adj|ambiguous|Su respuesta fue ambigua.|His answer was ambiguous.|confuso|claro|c
+anónimo|adj|anonymous|Recibió una carta anónima.|He received an anonymous letter.||c
+aparente|adj|apparent, seeming|Es un problema aparente.|It is an apparent problem.||c
+apasionado|adj|passionate|Es un músico muy apasionado.|He is a very passionate musician.||c
+apropiado|adj|appropriate|Ese vestido es apropiado para la fiesta.|That dress is appropriate for the party.|adecuado|inapropiado
+artificial|adj|artificial|Es una flor artificial.|It is an artificial flower.||natural|c
+asequible|adj|affordable|El precio es asequible.|The price is affordable.|barato||
+atento|adj|attentive; polite|Es un camarero muy atento.|He is a very attentive waiter.|cortés|distraído
+audaz|adj|bold, daring|Es una idea muy audaz.|It is a very bold idea.|atrevido|cobarde
+autónomo|adj|independent; self-employed|Es un trabajador autónomo.|He is a self-employed worker.|independiente|c
+bruto|adj|gross; rough|El salario bruto es de dos mil euros.|The gross salary is two thousand euros.||neto
+cálido|adj|warm|Nos dieron una cálida bienvenida.|They gave us a warm welcome.|caluroso|frío
+característico|adj|characteristic|Es un sabor muy característico.|It is a very characteristic flavour.|típico||c
+cauteloso|adj|cautious|Es muy cauteloso al conducir.|He is very cautious when driving.|prudente|imprudente
+célebre|adj|famous, renowned|Es un escritor célebre.|He is a famous writer.|famoso|desconocido
+coherente|adj|coherent|Tu explicación no es coherente.|Your explanation is not coherent.||incoherente|c
+compatible|adj|compatible|Este cable es compatible con mi móvil.|This cable is compatible with my phone.||incompatible|c
+competente|adj|competent|Es una médica muy competente.|She is a very competent doctor.|capaz|incompetente|c
+conflictivo|adj|troublesome, conflict-ridden|Es un barrio conflictivo.|It is a troubled neighbourhood.||
+consciente|adj|aware, conscious|Soy consciente del problema.|I am aware of the problem.||inconsciente|c
+conservador|adj|conservative|Tiene ideas muy conservadoras.|He has very conservative ideas.|tradicional|progresista|c
+crónico|adj|chronic|Tiene un dolor crónico.|He has a chronic pain.||c
+crucial|adj|crucial|Es un momento crucial.|It is a crucial moment.|decisivo||c
+curioso|adj|curious; strange|Es un caso muy curioso.|It is a very curious case.|raro||c
+decepcionante|adj|disappointing|El final fue decepcionante.|The ending was disappointing.||
+deficiente|adj|deficient, poor|El servicio es deficiente.|The service is poor.|malo|excelente|c
+democrático|adj|democratic|Es un país democrático.|It is a democratic country.||c
+dependiente|adj|dependent|Es muy dependiente de sus padres.|He is very dependent on his parents.||independiente|c
+desarrollado|adj|developed|Es un país muy desarrollado.|It is a very developed country.||subdesarrollado
+dinámico|adj|dynamic|Es una persona muy dinámica.|She is a very dynamic person.|activo|c
+doméstico|adj|domestic|El gato es un animal doméstico.|The cat is a domestic animal.||salvaje|c
+dramático|adj|dramatic|Fue un final dramático.|It was a dramatic ending.||c
+efímero|adj|short-lived, ephemeral|La fama es efímera.|Fame is short-lived.|breve|eterno|c
+elegante|adj|elegant|Lleva un traje muy elegante.|He is wearing a very elegant suit.||c
+elevado|adj|high, elevated|El precio es muy elevado.|The price is very high.|alto|bajo
+empático|adj|empathetic|Es una persona muy empática.|She is a very empathetic person.||c
+enérgico|adj|energetic|Es un hombre enérgico.|He is an energetic man.||c
+entusiasta|adj|enthusiastic|Es una alumna entusiasta.|She is an enthusiastic student.||c
+erróneo|adj|wrong, mistaken|Es un dato erróneo.|It is an incorrect piece of data.|equivocado|correcto|
+escéptico|adj|sceptical|Soy escéptico sobre ese plan.|I am sceptical about that plan.||c
+espontáneo|adj|spontaneous|Es muy espontáneo.|He is very spontaneous.|natural|c
+eventual|adj|possible; temporary|Hay un eventual aumento de precios.|There is a possible price increase.|posible|ff:False friend: eventual means "possible" or "temporary", not "eventual" (final = final, finalmente).
+exhaustivo|adj|thorough, exhaustive|Hicimos un estudio exhaustivo.|We did a thorough study.|completo|c
+existente|adj|existing|Usa los recursos existentes.|Use the existing resources.|actual||c
+experimentado|adj|experienced|Es un conductor muy experimentado.|He is a very experienced driver.|veterano|novato
+explícito|adj|explicit|Dio una orden explícita.|He gave an explicit order.|claro|implícito|c
+exquisito|adj|exquisite, delicious|La cena estuvo exquisita.|The dinner was delicious.|delicioso||c
+extenso|adj|long, extensive|Es un texto muy extenso.|It is a very long text.|largo|breve
+gradual|adj|gradual|Es un cambio gradual.|It is a gradual change.|progresivo|brusco|c
+harto|adj|fed up; plenty|Estoy harto de esperar.|I am fed up with waiting.|cansado|
+histórico|adj|historic; historical|Fue un día histórico.|It was a historic day.||c
+imaginario|adj|imaginary|Tiene un amigo imaginario.|He has an imaginary friend.||real|c
+impaciente|adj|impatient|Está impaciente por empezar.|He is impatient to start.||paciente|c
+imparcial|adj|impartial|El juez debe ser imparcial.|The judge must be impartial.|justo|parcial|c
+implícito|adj|implicit|Hay un mensaje implícito.|There is an implicit message.||explícito|c
+imprevisto|adj|unexpected|Tuvimos un gasto imprevisto.|We had an unexpected expense.|inesperado|previsto
+incapaz|adj|unable, incapable|Soy incapaz de mentir.|I am incapable of lying.||capaz
+indiferente|adj|indifferent|Me es indiferente.|It's all the same to me.||c
+indispensable|adj|indispensable|El agua es indispensable.|Water is indispensable.|imprescindible||c
+ineficaz|adj|ineffective|El método es ineficaz.|The method is ineffective.||eficaz
+inexistente|adj|non-existent|El problema es inexistente.|The problem is non-existent.||c
+infinito|adj|infinite|El universo parece infinito.|The universe seems infinite.|eterno|limitado|c
+inicial|adj|initial|La idea inicial era distinta.|The initial idea was different.|primero|final|c
+innovador|adj|innovative|Es un proyecto muy innovador.|It is a very innovative project.|novedoso||c
+inquietante|adj|worrying, disturbing|Es una noticia inquietante.|It is disturbing news.|preocupante||
+insólito|adj|unusual, rare|Es un caso insólito.|It is an unusual case.|raro|común
+irregular|adj|irregular|Es un verbo irregular.|It is an irregular verb.||regular|c
+lamentable|adj|regrettable, sad|Es una situación lamentable.|It is a regrettable situation.|triste||c
+mayoritario|adj|majority|Es el partido mayoritario.|It is the majority party.||minoritario
+minucioso|adj|meticulous, thorough|Es muy minucioso en su trabajo.|He is very meticulous in his work.|detallista|
+monótono|adj|monotonous|Es un trabajo monótono.|It is a monotonous job.|aburrido|variado|c
+mortal|adj|deadly; mortal|Es una enfermedad mortal.|It is a deadly illness.||c
+notorio|adj|well-known; obvious|Es un cambio notorio.|It is an obvious change.|evidente||c
+novedoso|adj|new, novel|Es un método novedoso.|It is a new method.|nuevo|antiguo|
+numeroso|adj|numerous|Es una familia numerosa.|It is a large family.||c
+obligatorio|adj|compulsory|La asistencia es obligatoria.|Attendance is compulsory.||opcional
+opuesto|adj|opposite|Vive en el lado opuesto de la ciudad.|He lives on the opposite side of the city.|contrario|
+oral|adj|oral|Tengo un examen oral mañana.|I have an oral exam tomorrow.||escrito|c
+perjudicial|adj|harmful|El tabaco es perjudicial para la salud.|Tobacco is harmful to health.|dañino|beneficioso
+perplejo|adj|perplexed|Me quedé perplejo.|I was left perplexed.|confuso||c
+pertinente|adj|relevant, appropriate|Es un comentario muy pertinente.|It is a very relevant comment.|oportuno|c
+pésimo|adj|terrible, very bad|El servicio fue pésimo.|The service was terrible.|horrible|excelente
+preocupante|adj|worrying|La situación es preocupante.|The situation is worrying.||
+prestigioso|adj|prestigious|Es una universidad prestigiosa.|It is a prestigious university.||c
+previsible|adj|predictable|El final es previsible.|The ending is predictable.||imprevisible
+primitivo|adj|primitive|Es una herramienta primitiva.|It is a primitive tool.||c
+privilegiado|adj|privileged|Es una persona privilegiada.|He is a privileged person.||c
+progresivo|adj|progressive, gradual|Hay una mejora progresiva.|There is a gradual improvement.|gradual|c
+prolongado|adj|prolonged|Fue una espera muy prolongada.|It was a very long wait.|largo|breve|c
+prometedor|adj|promising|Es un futuro prometedor.|It is a promising future.||
+provisional|adj|provisional, temporary|Es una solución provisional.|It is a temporary solution.|temporal|definitivo|c
+rentable|adj|profitable|El negocio es muy rentable.|The business is very profitable.||
+reservado|adj|reserved; booked|Es un chico muy reservado.|He is a very reserved boy.|tímido|abierto
+resistente|adj|resistant, tough|Es un material muy resistente.|It is a very tough material.|fuerte|frágil|c
+respetable|adj|respectable|Es una persona muy respetable.|He is a very respectable person.||c
+rígido|adj|rigid, stiff|La regla es muy rígida.|The rule is very rigid.|duro|flexible|c
+rural|adj|rural|Vive en una zona rural.|He lives in a rural area.||urbano|c
+salvaje|adj|wild|El lobo es un animal salvaje.|The wolf is a wild animal.||doméstico
+severo|adj|severe, strict|Es un profesor muy severo.|He is a very strict teacher.|estricto|c
+simbólico|adj|symbolic|Es un gesto simbólico.|It is a symbolic gesture.||c
+similar|adj|similar|Tenemos gustos similares.|We have similar tastes.|parecido|distinto|c
+singular|adj|singular; unique|Es un caso singular.|It is a unique case.|único|plural|c
+solidario|adj|supportive, charitable|Es una persona muy solidaria.|She is a very supportive person.||
+sucesivo|adj|successive|Hubo tres días sucesivos de lluvia.|There were three successive days of rain.|consecutivo||c
+superficial|adj|superficial|Es una persona superficial.|He is a superficial person.||profundo|c
+temporal|adj|temporary; of time|Es un trabajo temporal.|It is a temporary job.|provisional|permanente|c
+tóxico|adj|toxic|Es un producto tóxico.|It is a toxic product.||c
+transparente|adj|transparent|El agua es transparente.|The water is transparent.|claro|opaco|c
+tremendo|adj|tremendous; huge|Hizo un esfuerzo tremendo.|He made a tremendous effort.|enorme||c
+urbano|adj|urban|Vive en una zona urbana.|He lives in an urban area.||rural|c
+usual|adj|usual|Es lo usual en esta ciudad.|It is the usual thing in this city.|habitual|raro|c
+valioso|adj|valuable|Es un consejo muy valioso.|It is a very valuable piece of advice.|importante|
+vertical|adj|vertical|Dibuja una línea vertical.|Draw a vertical line.||horizontal|c
+violento|adj|violent|Es una película muy violenta.|It is a very violent film.||pacífico|c
+virtual|adj|virtual|Tuvimos una reunión virtual.|We had a virtual meeting.||c
+vulgar|adj|vulgar; ordinary|Es un chiste muy vulgar.|It is a very vulgar joke.|grosero||c
+tratarse de|v|to be about; to be a question of|Se trata de un problema serio.|It is a serious problem.|||
+de cara a|prep|with a view to; facing|Estudio de cara al examen.|I am studying with the exam in mind.|||
+en medio de|prep|in the middle of|Estaba en medio de la calle.|He was in the middle of the street.|||
+con tal de que|conj|provided that|Voy con tal de que vengas.|I will go provided that you come.|siempre que||
+acaso|adv|perhaps; by chance|¿Acaso no lo sabías?|Didn't you know, by any chance?|quizás||
+a menos que|conj|unless|No iré a menos que me invites.|I won't go unless you invite me.|salvo que||
+de ahí que|conj|hence, which is why|Llovió; de ahí que no saliéramos.|It rained; hence we did not go out.|por eso||
+a raíz de|prep|as a result of|A raíz del accidente, cerraron la calle.|As a result of the accident, they closed the street.|||
+por encima de|prep|above, over|Está por encima de la media.|It is above average.|||
+por debajo de|prep|below, under|Está por debajo de la media.|It is below average.|||
+en lo que respecta a|prep|as far as ... is concerned|En lo que respecta a mí, no hay problema.|As far as I'm concerned, there is no problem.|||
+a corto plazo|adv|in the short term|A corto plazo no habrá cambios.|There will be no changes in the short term.||a largo plazo
