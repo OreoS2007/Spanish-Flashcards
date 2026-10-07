@@ -5332,8 +5332,12 @@ function renderKit(){
       <div class="chips">${TENSES.map(([t,l])=>`<button class="chipf" data-t="${t}" aria-pressed="${S.tenses.includes(t)}">${l}</button>`).join("")}</div>
       <div class="row"><button class="btnx" id="dr">Start drill (${UNIT})</button></div><p class="sub" style="font-size:.8rem">Correct so far: ${S.cj}</p></div>
     <div class="tool"><h2 class="disp">🔁 Cognate rules</h2><p class="sub">${COGS.length} words you can read through English, grouped by pattern (-ción → -tion...). They're also in your deck, marked ≈.</p>
-      <div class="row"><button class="btnx" id="cg">Open rules</button></div></div></div>`;
+      <div class="row"><button class="btnx" id="cg">Open rules</button></div></div>
+    <div class="tool"><h2 class="disp">💾 Backup</h2><p class="sub">Your progress lives in this browser only. Save a backup file now and then, so you can restore it if the browser clears its data.${S.lastBackup?` Last backup: ${esc(S.lastBackup)}.`:" No backup yet."}</p>
+      <div class="row"><button class="btnx" id="bkx">Save backup</button><button class="btnx alt" id="bki">Restore from file</button><input type="file" id="bkf" accept=".json,application/json" hidden></div></div></div>`;
   bindDir();
+  $("bkx").onclick=exportProgress; $("bki").onclick=()=>$("bkf").click();
+  $("bkf").onchange=e=>{ const f=e.target.files[0]; if(f) importProgress(f); };
   $("pl").onclick=()=>{ screen={type:"phrases"}; startStudy(shuffle(PHR.filter(w=>!ST[w.es])).slice(0,UNIT),"learn","Phrases"); };
   $("pr").onclick=()=>{ screen={type:"phrases"}; startStudy(reviewOrder(PHR.filter(isDue)).slice(0,UNIT),"review","Phrases review"); };
   $("pv").onclick=()=>{ screen={type:"phrases"}; render(); };
@@ -5341,6 +5345,25 @@ function renderKit(){
   $("cg").onclick=()=>{ screen={type:"cogs"}; render(); };
   $("view").querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{const t=b.dataset.t;S.tenses=S.tenses.includes(t)?S.tenses.filter(x=>x!==t):S.tenses.concat(t);if(!S.tenses.length)S.tenses=["pres"];save();renderKit();});
 }
+function exportProgress(){
+  S.lastBackup=today(); save();
+  const blob=new Blob([JSON.stringify({app:KEY,saved:new Date().toISOString(),data:S})],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="espanol-core-backup-"+today()+".json";
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  toast("💾","Backup saved","Check your Downloads / Files app."); renderKit();
+}
+function importProgress(file){
+  const r=new FileReader();
+  r.onload=()=>{ try{
+      const j=JSON.parse(r.result), d=j&&j.app===KEY&&j.data;
+      if(!d||typeof d.st!=="object"||typeof d.st2!=="object") throw 0;
+      if(!confirm("Replace the progress in this browser with the backup?")) return;
+      S=Object.assign(FRESH(),d); ST=S.dir==="en"?S.st2:S.st; save();
+      toast("✅","Progress restored",""); go("kit");
+    }catch(e){ toast("⚠","That file isn't a backup","Pick the .json file saved by this app."); } };
+  r.readAsText(file);
+}
+try{ if(navigator.storage&&navigator.storage.persist) navigator.storage.persist(); }catch(e){}
 function renderPhrases(){
   $("view").innerHTML=`<div class="wrap"><button class="back" id="bk">← Toolkit</button><h1 class="disp">Phrases</h1>${seg(cnt(PHR),PHR.length)}
     <ul class="wl" style="margin-top:14px">${PHR.map(w=>{const s=ST[w.es]||"n";return `<li><button data-w="${esc(w.es)}"><span class="st ${s}">${SYM[s]||"·"}</span><span><b>${esc(w.disp)}</b> <small>${w.cefr}</small></span><span class="en">${esc(w.en)}</span></button></li>`}).join("")}</ul></div>`;

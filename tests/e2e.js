@@ -56,6 +56,20 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   await pg.click("text=Toolkit"); await pg.waitForTimeout(250);
   ok(/Start drill \(10\)/.test(await body()), "conjugation drill is 10 questions");
 
+  console.log("Backup");
+  ok(/Save backup/.test(await body()), "Toolkit has a Backup card");
+  const [dl] = await Promise.all([pg.waitForEvent("download"), pg.click("#bkx")]);
+  const fs = require("fs"), tmp = require("path").join(require("os").tmpdir(), "esfc-backup-test.json");
+  await dl.saveAs(tmp);
+  const saved = JSON.parse(fs.readFileSync(tmp, "utf8"));
+  ok(saved.app === "esfc-v2" && saved.data && typeof saved.data.st === "object", "backup file has the expected shape");
+  await pg.evaluate(() => { S.st = {}; S.st2 = {}; ST = S.st; save(); });
+  pg.once("dialog", d => d.accept());
+  await pg.setInputFiles("#bkf", tmp); await pg.waitForTimeout(400);
+  const restored = await pg.evaluate(() => Object.keys(S.st).length);
+  ok(restored === Object.keys(saved.data.st).length && restored > 0, "restoring a backup brings the progress back");
+  fs.unlinkSync(tmp);
+
   ok(errors.length === 0, "no JavaScript errors" + (errors.length ? ": " + errors.join(" | ") : ""));
   await b.close();
   console.log(fails.length ? `\nFAIL: ${fails.length} problem(s)` : "\nOK: all browser tests passed");
