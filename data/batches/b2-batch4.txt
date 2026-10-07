@@ -1,0 +1,78 @@
+azar|m|chance, fate|Lo encontré por puro azar.|I found it by pure chance.|casualidad|
+bache|m|pothole; rough patch|Hay un bache grande en la calle.|There is a big pothole in the street.||
+convenio|m|agreement, treaty|Firmaron un convenio con la empresa.|They signed an agreement with the company.|acuerdo|
+desvío|m|detour, diversion|Hay un desvío por obras.|There is a detour because of roadworks.||
+enlace|m|link; connection|Te envío el enlace por correo.|I am sending you the link by email.|vínculo|
+fundamento|m|basis, grounds|Su queja no tiene fundamento.|His complaint has no basis.|base|
+incidente|m|incident|Hubo un incidente en el aeropuerto.|There was an incident at the airport.||c
+inconveniente|m|drawback, problem|El único inconveniente es el precio.|The only drawback is the price.|desventaja|ventaja
+lapso|m|lapse, interval|Pasó un lapso de dos años.|A period of two years went by.|período|
+mandato|m|mandate; term of office|Su mandato dura cuatro años.|His term of office lasts four years.||c
+oleada|f|wave, surge|Hay una oleada de calor.|There is a heat wave.||
+panorama|m|outlook, panorama|El panorama económico es difícil.|The economic outlook is difficult.|perspectiva|c
+porvenir|m|future|Tiene un porvenir brillante.|He has a bright future.|futuro|pasado
+precedente|m|precedent|Es un precedente peligroso.|It is a dangerous precedent.||c
+revés|m|setback; reverse|Sufrió un duro revés en el trabajo.|He suffered a hard setback at work.|contratiempo|
+soborno|m|bribe|Fue acusado de aceptar un soborno.|He was accused of taking a bribe.||
+afinidad|f|affinity, similarity|Siento afinidad con ella.|I feel an affinity with her.|simpatía|c
+cercanía|f|closeness, proximity|Me gusta la cercanía de la playa.|I like the proximity of the beach.|proximidad|lejanía
+cima|f|top, summit|Llegamos a la cima al mediodía.|We reached the top at noon.|cumbre|
+codicia|f|greed|La codicia lo destruyó.|Greed destroyed him.|avaricia|generosidad
+constancia|f|perseverance|Se necesita constancia para aprender.|You need perseverance to learn.|perseverancia|
+convicción|f|conviction|Habla con mucha convicción.|He speaks with great conviction.|certeza|c
+coyuntura|f|situation, juncture|La coyuntura económica no es buena.|The economic situation is not good.|situación|
+destreza|f|skill|Toca el piano con gran destreza.|She plays the piano with great skill.|habilidad|torpeza
+empatía|f|empathy|Tiene mucha empatía con los demás.|She has a lot of empathy with others.||c
+envergadura|f|scale, importance|Es un proyecto de gran envergadura.|It is a project of great scale.|magnitud|
+fragilidad|f|fragility|Me sorprende su fragilidad.|Her fragility surprises me.||c
+franqueza|f|frankness|Te hablo con franqueza.|I am speaking to you frankly.|sinceridad|
+grieta|f|crack|Hay una grieta en la pared.|There is a crack in the wall.||
+impotencia|f|helplessness|Sentí mucha impotencia.|I felt very helpless.||c
+intimidad|f|privacy; intimacy|Necesito un poco de intimidad.|I need a little privacy.||c
+magnitud|f|magnitude, scale|No entiende la magnitud del problema.|He doesn't understand the magnitude of the problem.|tamaño|c
+privacidad|f|privacy|Respeta mi privacidad.|Respect my privacy.||c
+resignación|f|resignation, acceptance|Lo aceptó con resignación.|He accepted it with resignation.||c
+sinceridad|f|sincerity|Agradezco tu sinceridad.|I appreciate your sincerity.||c
+soledad|f|loneliness, solitude|Siente mucha soledad.|He feels very lonely.||compañía
+acechar|v|to lurk; to stalk|El peligro acecha en cada esquina.|Danger lurks around every corner.||
+aferrarse|v|to cling|Se aferra a sus recuerdos.|He clings to his memories.|agarrarse|soltar
+agravar|v|to worsen, aggravate|La lluvia agravó el problema.|The rain made the problem worse.|empeorar|mejorar
+anhelar|v|to long for|Anhela volver a su país.|She longs to return to her country.|desear|
+despreciar|v|to despise; to look down on|No desprecies a nadie.|Don't look down on anyone.|menospreciar|admirar
+frustrar|v|to frustrate|Esa derrota nos frustró.|That defeat frustrated us.||c
+mermar|v|to reduce, dwindle|El agua merma en verano.|The water dwindles in summer.|disminuir|aumentar
+ocasionar|v|to cause|El accidente ocasionó un atasco.|The accident caused a traffic jam.|causar|
+replicar|v|to reply, retort|No replicó nada.|He didn't reply anything.|responder|
+socavar|v|to undermine|Esas críticas socavan su confianza.|Those criticisms undermine his confidence.||
+transcurrir|v|to pass, elapse|Transcurrieron tres meses.|Three months went by.|pasar|
+transmitir|v|to transmit; to broadcast|La radio transmite el partido.|The radio broadcasts the match.|emitir|c
+vacilar|v|to hesitate|No vaciles más.|Don't hesitate any longer.|dudar|
+ansioso|adj|anxious; eager|Estoy ansioso por verte.|I am eager to see you.|nervioso|tranquilo
+bárbaro|adj|barbaric; great (colloquial)|Fue un crimen bárbaro.|It was a barbaric crime.|cruel||c
+confiado|adj|trusting, confident|Es un niño muy confiado.|He is a very trusting boy.|ingenuo|desconfiado
+conmovedor|adj|moving, touching|Fue un discurso conmovedor.|It was a moving speech.|emotivo||
+escandaloso|adj|scandalous; outrageous|El precio es escandaloso.|The price is outrageous.||c
+esquivo|adj|elusive, aloof|Es un hombre esquivo.|He is an elusive man.|huidizo|
+fortuito|adj|chance, accidental|Fue un encuentro fortuito.|It was a chance meeting.|casual|
+frívolo|adj|frivolous|Es una persona frívola.|He is a frivolous person.|superficial|serio|c
+grato|adj|pleasant|Fue una grata sorpresa.|It was a pleasant surprise.|agradable|
+ilustre|adj|distinguished, illustrious|Es un escritor ilustre.|He is a distinguished writer.|célebre|c
+impecable|adj|impeccable|Su trabajo es impecable.|His work is impeccable.|perfecto|c
+ingenuo|adj|naive|Es un chico muy ingenuo.|He is a very naive boy.|inocente|astuto
+llamativo|adj|striking, flashy|Lleva un traje llamativo.|He is wearing a flashy suit.||discreto
+nítido|adj|sharp, clear|La imagen es muy nítida.|The image is very sharp.|claro|borroso
+nocivo|adj|harmful|El humo es nocivo para la salud.|Smoke is harmful to health.|dañino|inofensivo
+paulatino|adj|gradual|Hay un cambio paulatino.|There is a gradual change.|gradual|brusco
+precario|adj|precarious|Tiene un trabajo precario.|He has a precarious job.|inestable|c
+rotundo|adj|emphatic, categorical|Dio una respuesta rotunda.|He gave a categorical answer.|categórico|
+sagaz|adj|shrewd, sharp|Es una persona muy sagaz.|She is a very shrewd person.|astuto|
+tajante|adj|categorical, firm|Fue tajante en su respuesta.|He was categorical in his answer.|rotundo|
+terco|adj|stubborn|Es muy terco.|He is very stubborn.|obstinado|flexible
+tenue|adj|faint, dim|Había una luz tenue.|There was a dim light.|débil|intenso
+a ciegas|adv|blindly|No puedo decidir a ciegas.|I can't decide blindly.|||
+a duras penas|adv|barely, with difficulty|Llegó a duras penas.|He barely made it.|||
+a regañadientes|adv|reluctantly|Lo hizo a regañadientes.|He did it reluctantly.|||de buena gana
+de antemano|adv|in advance|Gracias de antemano.|Thanks in advance.|||
+de sobra|adv|more than enough|Tenemos tiempo de sobra.|We have more than enough time.|||
+en vano|adv|in vain|Lo intentó en vano.|He tried in vain.|||
+por poco|adv|nearly, almost|Por poco pierdo el tren.|I almost missed the train.|casi||
