@@ -1,0 +1,14 @@
+{
+  "name": "spanish-flashcards",
+  "private": true,
+  "description": "Español Core: English-medium Spanish flashcards (single-file app)",
+  "scripts": {
+    "check": "node tools/check.js index.html",
+    "shadow": "node tools/check.js index.html --shadow",
+    "test": "node tests/e2e.js index.html",
+    "verify": "npm run check && npm run test"
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}
