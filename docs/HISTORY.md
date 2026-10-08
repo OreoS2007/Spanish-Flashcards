@@ -25,4 +25,5 @@
 - B2 batch 4 を追加：単語 71、フレーズ（副詞句）7、計78枚。単語の合計 2,988、総カード 3,326。
 - **公開方法を GitHub Pages に移行**（リポジトリ OreoS2007/Spanish-Flashcards、URL は docs/DEPLOY.md）。claude.ai 版は旧版として残し、更新しない。進捗は引き継がれない（ユーザー了承済み）。
 - **進捗のバックアップ機能を追加**（Toolkit → Backup：ファイルに保存／ファイルから復元）。iPhone の Safari が約1週間使わないサイトの保存データを消す仕様への対策。ユーザー依頼。テストも追加。
+- **バックアップのリマインダーを追加**（最終バックアップから12日で Learn 画面に表示、「Later」でその日は非表示）。ユーザー依頼（日数は12日）。
 - バッチは `data/batches/b2-batch2.txt`（1行1語の下書き）を `b2-batch2.js` が変換する形。`git checkout` で index.html が CRLF になると add-batch が失敗するので、このリポジトリは `core.autocrlf false`。

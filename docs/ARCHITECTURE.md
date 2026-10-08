@@ -54,5 +54,5 @@
 
 ## 3. 進捗について
 - 進捗はブラウザの localStorage（そのページ専用）。**公開場所（URL）が変わると進捗は引き継がれない。**
-- **バックアップ**：Toolkit の「Backup」カード。`exportProgress()` が `{app:"esfc-v2", saved, data:S}` を JSON ファイルで保存し、`importProgress()` が確認ダイアログのあと `S` を置き換える。`S.lastBackup` に最終バックアップ日を記録。起動時に `navigator.storage.persist()` も要求している（Safari ではホーム画面に追加したときだけ効く）。
+- **バックアップ**：Toolkit の「Backup」カード。`exportProgress()` が `{app:"esfc-v2", saved, data:S}` を JSON ファイルで保存し、`importProgress()` が確認ダイアログのあと `S` を置き換える。`S.lastBackup` に最終バックアップ日を記録。Learn 画面の `backupDue()` が、最終バックアップ（なければ初回利用日）から `BACKUP_DAYS=12` 日たつとリマインダーを表示。「Later」は `S.bkLater` でその日だけ非表示。起動時に `navigator.storage.persist()` も要求している（Safari ではホーム画面に追加したときだけ効く）。
 - db ケーパビリティ（claude.ai の共有DB）は使っていない。外部共有を妨げないためにあえて localStorage にしている。

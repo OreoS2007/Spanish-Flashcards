@@ -5172,6 +5172,7 @@ function renderLearn(){
     <div class="grp">${chips([["freq","Frequency"],["pos","Part of speech"]],g.mode,"mode")}
     ${g.mode==="pos"?chips(POS_OPTS,g.pos,"pos")+(SORTS[g.pos].length>1?chips(SORTS[g.pos],(SORTS[g.pos].find(s=>s[0]===g.sort)||SORTS[g.pos][0])[0],"sort"):""):""}</div>`;
   { const cd=cpDue(); if(cd) html+=`<div class="cpban"><span style="font-size:1.6rem">📝</span><div class="nl"><b>Checkpoint ready</b><small>${esc(cd.sec.title)} · ${cpLabel(cd)} · ${Math.min(CP_Q,cpWords(cd).length)} questions</small></div><button class="btnx" id="cpgo">Take test</button></div>`; }
+  { const bd=backupDue(); if(bd) html+=`<div class="cpban"><span style="font-size:1.6rem">💾</span><div class="nl"><b>Time to back up your progress</b><small>${S.lastBackup?`Last backup was ${bd} days ago.`:`You haven't saved a backup yet.`}</small></div><button class="btnx" id="bkgo">Save backup</button><button class="btnx alt" id="bklater">Later</button></div>`; }
   if(nu){ const c=cnt(nu.words), left=c.n||nu.words.length-c.o;
     html+=`<div class="next"><div class="nl"><small>Next up</small><b class="disp">${esc(nu.sec.title)} · Unit ${nu.j+1}</b>
       <div class="dots">${nu.words.map(w=>`<i class="${ST[w.es]||""}"></i>`).join("")}</div></div>
@@ -5195,6 +5196,15 @@ function renderLearn(){
   $("view").querySelectorAll(".node[data-u]").forEach(b=>b.onclick=()=>{ const s=secs.find(x=>x.id===openSec); startUnit(unitsOf(s)[+b.dataset.u]); });
   $("view").querySelectorAll("[data-cp]").forEach(b=>b.onclick=()=>{ const s=secs.find(x=>x.id===openSec), blk=cpBlocks(s)[+b.dataset.cp]; if(blk&&cpReady(blk)) startTest(blk); });
   if($("cpgo")) $("cpgo").onclick=()=>{ const cd=cpDue(); if(cd) startTest(cd); };
+  if($("bkgo")) $("bkgo").onclick=exportProgress;
+  if($("bklater")) $("bklater").onclick=()=>{ S.bkLater=today(); save(); renderLearn(); };
+}
+/* days since the last backup (or since first use) once it reaches BACKUP_DAYS; 0 when no reminder is due */
+const BACKUP_DAYS=12;
+function backupDue(){
+  const from=S.lastBackup||Object.keys(S.days).sort()[0]; if(!from||S.bkLater===today()) return 0;
+  const [y,m,d]=from.split("-").map(Number), n=Math.floor((new Date()-new Date(y,m-1,d))/864e5);
+  return n>=BACKUP_DAYS?n:0;
 }
 /* ---------- checkpoint tests: every 5 units, up to 20 multiple-choice questions ---------- */
 const CP_EVERY=5, CP_Q=20;
@@ -5350,7 +5360,7 @@ function exportProgress(){
   const blob=new Blob([JSON.stringify({app:KEY,saved:new Date().toISOString(),data:S})],{type:"application/json"});
   const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="espanol-core-backup-"+today()+".json";
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
-  toast("💾","Backup saved","Check your Downloads / Files app."); renderKit();
+  toast("💾","Backup saved","Check your Downloads / Files app."); render();
 }
 function importProgress(file){
   const r=new FileReader();

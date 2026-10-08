@@ -70,6 +70,19 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   ok(restored === Object.keys(saved.data.st).length && restored > 0, "restoring a backup brings the progress back");
   fs.unlinkSync(tmp);
 
+  console.log("Backup reminder (12 days)");
+  const dayAgo = n => pg.evaluate(n => { const d = new Date(); d.setDate(d.getDate() - n); delete S.bkLater; S.lastBackup = dayKey(d); save(); go("learn"); }, n);
+  await dayAgo(11); await pg.waitForTimeout(200);
+  ok(!/Time to back up/.test(await body()), "no reminder after 11 days");
+  await dayAgo(12); await pg.waitForTimeout(200);
+  ok(/Time to back up/.test(await body()), "reminder appears after 12 days");
+  await pg.click("#bklater"); await pg.waitForTimeout(200);
+  ok(!/Time to back up/.test(await body()), "Later hides the reminder for today");
+  await pg.evaluate(() => { delete S.bkLater; save(); go("learn"); }); await pg.waitForTimeout(200);
+  const [dl2] = await Promise.all([pg.waitForEvent("download"), pg.click("#bkgo")]);
+  await dl2.cancel().catch(() => {}); await pg.waitForTimeout(300);
+  ok(!/Time to back up/.test(await body()), "saving a backup clears the reminder");
+
   ok(errors.length === 0, "no JavaScript errors" + (errors.length ? ": " + errors.join(" | ") : ""));
   await b.close();
   console.log(fails.length ? `\nFAIL: ${fails.length} problem(s)` : "\nOK: all browser tests passed");
