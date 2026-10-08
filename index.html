@@ -248,6 +248,10 @@ ol.senses{list-style:none;counter-reset:s;padding:0;margin:4px 0 0}
 .cp b{display:block;font-size:.95rem} .cp small{display:block;color:var(--muted);font-size:.75rem} .cp .ci{font-size:1.4rem}
 .cp.ready{border:2px solid var(--mid);box-shadow:0 0 0 4px color-mix(in srgb,var(--mid) 22%,transparent)}
 .cp.passed{border:2px solid var(--yes)} .cp.lock{opacity:.5;cursor:not-allowed}
+.wl li.ck{display:flex;align-items:center;border-bottom:1px solid var(--line)} .wl li.ck>button:first-child{border-bottom:0;flex:1;min-width:0}
+.wl li.ck .info{width:auto;border:0;background:none;color:var(--muted);font-size:1.1rem;padding:8px 10px;cursor:pointer}
+.wl li.ck.flag .st{color:var(--no)} .wl li.ck.flag b{text-decoration:underline}
+.clearbar{position:sticky;bottom:0;background:var(--bg);padding:10px 0;margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;border-top:1px solid var(--line)}
 .cpban{display:flex;align-items:center;gap:12px;background:color-mix(in srgb,var(--mid) 12%,var(--card));border:2px solid var(--mid);border-radius:18px;padding:12px 14px;margin:0 0 12px}
 .cpban .nl{flex:1;min-width:0} .cpban small{display:block;color:var(--muted);font-size:.78rem}
 .quiz{max-width:460px;margin:0 auto;padding:10px 16px 24px}
@@ -5206,20 +5210,22 @@ function backupDue(){
   const [y,m,d]=from.split("-").map(Number), n=Math.floor((new Date()-new Date(y,m-1,d))/864e5);
   return n>=BACKUP_DAYS?n:0;
 }
-/* ---------- checkpoint tests: every 5 units, up to 20 multiple-choice questions ---------- */
-const CP_EVERY=5, CP_Q=20;
+/* ---------- checkpoint tests: every 5 units, 15 multiple-choice questions; 80% clears the 5 units ---------- */
+const CP_EVERY=5, CP_Q=15, CP_PASS=.8;
 function cpBlocks(sec){ const us=unitsOf(sec), out=[]; for(let b=0;b*CP_EVERY<us.length;b++) out.push({sec,b,units:us.slice(b*CP_EVERY,b*CP_EVERY+CP_EVERY)}); return out; }
 const cpKey=blk=>curWorld()+"|"+blk.sec.id+"#"+blk.b+"|"+S.dir;
 const cpWords=blk=>blk.units.flatMap(u=>u.words);
-const cpReady=blk=>blk.units.every(u=>["done","gold"].includes(uState(u)));
+const cpFinished=blk=>blk.units.every(u=>["done","gold"].includes(uState(u)));
+const cpReady=blk=>true; /* the test can be taken any time: passing it clears the units */
 const cpRec=blk=>(S.cp||{})[cpKey(blk)];
 const cpLabel=blk=>"Units "+(blk.b*CP_EVERY+1)+"–"+(blk.b*CP_EVERY+blk.units.length);
 const cpOfUnit=u=>cpBlocks(u.sec)[Math.floor(u.j/CP_EVERY)];
 function cpDue(){ const L=(S.last||{})[grpKey()]; if(!L) return null; const s=sections().find(x=>x.id===L.sec); if(!s) return null;
-  const blk=cpBlocks(s)[Math.floor(L.j/CP_EVERY)]; return blk&&cpReady(blk)&&!cpRec(blk)?blk:null; }
-function cpNodeHTML(blk){ if(!blk) return ""; const r=cpRec(blk), ready=cpReady(blk), n=Math.min(CP_Q,cpWords(blk).length), perfect=r&&r.best===r.n;
-  const cls=perfect?"passed":ready?"ready":"lock";
-  return `<button class="cp ${cls}" data-cp="${blk.b}" ${ready?"":'aria-disabled="true"'}><span class="ci">${ready?(perfect?"🏅":"📝"):"🔒"}</span><span><b>Checkpoint · ${cpLabel(blk)}</b><small>${r?`Best ${r.best}/${r.n}${perfect?"":" · tap to retake"}`:ready?`${n}-question test`:"Finish these units to unlock"}</small></span></button>`; }
+  const blk=cpBlocks(s)[Math.floor(L.j/CP_EVERY)]; return blk&&cpFinished(blk)&&!cpRec(blk)?blk:null; }
+const cpNeed=n=>Math.ceil(n*CP_PASS-1e-9);
+function cpNodeHTML(blk){ if(!blk) return ""; const r=cpRec(blk), n=Math.min(CP_Q,cpWords(blk).length), cleared=r&&r.cleared, perfect=cleared&&cpWords(blk).every(w=>ST[w.es]==="o");
+  const cls=cleared?"passed":"ready";
+  return `<button class="cp ${cls}" data-cp="${blk.b}"><span class="ci">${perfect?"🏅":cleared?"✅":"📝"}</span><span><b>Checkpoint · ${cpLabel(blk)}</b><small>${cleared?`Cleared · best ${r.best}/${r.n}${perfect?"":" · tap to retake"}`:r?`Best ${r.best}/${r.n} · tap to retake`:`${n} questions · ${cpNeed(n)} right clears these units`}</small></span></button>`; }
 const firstMeaning=w=>w.en.split(";")[0].trim();
 function makeQuiz(words){
   const pick=reviewOrder(words.filter(isDue)).concat(shuffle(words.filter(w=>!isDue(w)))).slice(0,CP_Q);
@@ -5233,7 +5239,7 @@ function makeQuiz(words){
 }
 let testS=null;
 function startTest(blk){ const {qs,rest}=makeQuiz(cpWords(blk)); if(!qs.length) return;
-  testS={blk,qs,rest,i:0,picked:null,score:0,wrong:[],xp:0,goalBefore:xpToday(),title:blk.sec.title+" · "+cpLabel(blk)};
+  testS={blk,qs,rest,i:0,picked:null,score:0,wrong:[],flags:new Set(),need:cpNeed(qs.length),xp:0,goalBefore:xpToday(),title:blk.sec.title+" · "+cpLabel(blk)};
   hidePop(); screen={type:"test",back:screen}; render(); }
 function renderTest(){ const T=testS, q=T.qs[T.i], w=q.w, en=S.dir==="en", lab=x=>en?full(x):firstMeaning(x);
   $("view").innerHTML=`<div class="quiz"><div class="shead"><button class="back" id="bk" aria-label="Quit test">✕</button><div class="bar"><i style="width:${T.i/T.qs.length*100}%"></i></div><span class="count">${T.i+1}/${T.qs.length}</span></div>
@@ -5255,22 +5261,33 @@ function answerTest(k){ const T=testS; if(!T||T.picked!==null) return; T.picked=
   $("qfb").innerHTML=`<p class="sub" style="margin:0">✖ Added to Review · <b>${esc(full(w))}</b> = ${esc(firstMeaning(w))}</p>${ex?`<p class="es">${esc(ex[0])}</p><p class="ent">${esc(ex[1])}</p>`:""}<button class="btnx" id="qn">${T.i+1<T.qs.length?"Next":"See results"}</button>`;
   $("qn").onclick=next; $("qn").focus(); }
 function finishTest(){ const T=testS, key=cpKey(T.blk), n=T.qs.length; S.cp=S.cp||{}; const prev=S.cp[key];
-  S.cp[key]={best:Math.max(prev?prev.best:0,T.score),n,last:T.score}; if(T.score===n&&n>=10) S.perfect++; save();
+  S.cp[key]={best:Math.max(prev?prev.best:0,T.score),n,last:T.score,cleared:!!(prev&&prev.cleared)}; if(T.score===n&&n>=10) S.perfect++; save();
   const x=xpToday(); if(T.goalBefore<S.goal&&x>=S.goal&&!S.goalHit[today()]){ S.goalHit[today()]=1; save(); }
   checkBadges(); screen={type:"testres",back:screen.back}; render(); }
 function renderTestRes(){ const T=testS; if(!T){ screen=screen.back; return render(); }
-  const n=T.qs.length, pct=T.score/n, blk=T.blk, nu=unitAfter(blk.units[blk.units.length-1]);
+  const n=T.qs.length, pct=T.score/n, blk=T.blk, nu=unitAfter(blk.units[blk.units.length-1]), pass=T.score>=T.need, pending=pass&&!T.applied, nunits=blk.units.length;
   const row=w=>{ const s=ST[w.es]||"n"; return `<li><button data-d="${esc(w.es)}"><span class="st ${s}">${SYM[s]||"·"}</span><span><b>${esc(full(w))}</b></span><span class="en">${esc(firstMeaning(w))}</span></button></li>`; };
+  const ckrow=w=>`<li class="ck${T.flags.has(w.es)?" flag":""}"><button data-ck="${esc(w.es)}" aria-pressed="${T.flags.has(w.es)}"><span class="st">${T.flags.has(w.es)?"✖":"☐"}</span><span><b>${esc(full(w))}</b></span><span class="en">${esc(firstMeaning(w))}</span></button><button type="button" class="info" data-d="${esc(w.es)}" aria-label="Details for ${esc(full(w))}">ⓘ</button></li>`;
+  const clearLabel=()=>T.flags.size?`Clear ${nunits} units · ${T.flags.size} to Review`:`Clear ${nunits} units`;
   $("view").innerHTML=`<div class="wrap done tres"><div class="xpbig">+${T.xp} XP</div>
-    <h1 class="disp">${pct===1?"🏅 Perfect!":pct>=.8?"Great job!":pct>=.6?"Good work":"Keep going"}</h1><p class="sub">📝 ${esc(T.title)}</p>
-    <div class="goalring">${ring(T.score,n,120,12,pct>=.8?"var(--yes)":"var(--mid)")}<div><b>${T.score}</b><small>/ ${n} correct</small></div></div>
+    <h1 class="disp">${T.applied?"✅ Units cleared":pct===1?"🏅 Perfect!":pass?"You passed!":pct>=.6?"Almost there":"Keep going"}</h1><p class="sub">📝 ${esc(T.title)}</p>
+    <div class="goalring">${ring(T.score,n,120,12,pass?"var(--yes)":"var(--mid)")}<div><b>${T.score}</b><small>/ ${n} correct · ${T.need} needed</small></div></div>
     ${T.wrong.length?`<h2 class="disp">Missed (${T.wrong.length})</h2><p class="sub l">Added to Review. Tap one to see its details.</p><ul class="wl">${T.wrong.map(row).join("")}</ul>`:""}
-    ${T.rest.length?`<h2 class="disp">Not in this test (${T.rest.length})</h2><p class="sub l">Skim this list. Tap any word you don't remember to see its details.</p><ul class="wl">${T.rest.map(row).join("")}</ul>`:""}
-    <div class="row" style="justify-content:center;margin-top:20px">${nu?`<button class="btnx" id="tnext">Next: ${esc(nu.sec.title)} · Unit ${nu.j+1}</button>`:""}<button class="btnx alt" id="tagain">Retake</button><button class="btnx alt" id="tout">Done</button></div></div>`;
+    ${pending?`<h2 class="disp">Not in this test (${T.rest.length})</h2><p class="sub l">Tap every word you <b>don't</b> remember. Those go to Review. If you tap none, all ${nunits} units count as perfect. ⓘ shows details.</p><ul class="wl" id="cklist">${T.rest.map(ckrow).join("")}</ul>`
+      :!pass&&T.rest.length?`<h2 class="disp">Not in this test (${T.rest.length})</h2><p class="sub l">Pass the test (${T.need}/${n}) to clear these units. Tap a word to see its details.</p><ul class="wl">${T.rest.map(row).join("")}</ul>`:""}
+    <div class="${pending?"clearbar":"row"}" style="${pending?"":"justify-content:center;margin-top:20px"}">${pending?`<button class="btnx go" id="tclear">${clearLabel()}</button>`:""}${!pending&&nu?`<button class="btnx" id="tnext">Next: ${esc(nu.sec.title)} · Unit ${nu.j+1}</button>`:""}<button class="btnx alt" id="tagain">Retake</button><button class="btnx alt" id="tout">${pending?"Close without clearing":"Done"}</button></div></div>`;
   $("tout").onclick=()=>{ screen=screen.back; render(); };
   $("tagain").onclick=()=>{ screen=screen.back; startTest(blk); };
   if($("tnext")) $("tnext").onclick=()=>{ screen=screen.back; startUnit(nu); };
-  $("view").querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>openSheet(BY[b.dataset.d])); }
+  $("view").querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>openSheet(BY[b.dataset.d]));
+  $("view").querySelectorAll("[data-ck]").forEach(b=>b.onclick=()=>{ const k=b.dataset.ck, on=!T.flags.has(k); on?T.flags.add(k):T.flags.delete(k);
+    b.setAttribute("aria-pressed",on); b.parentNode.classList.toggle("flag",on); b.querySelector(".st").textContent=on?"✖":"☐"; $("tclear").textContent=clearLabel(); });
+  if($("tclear")) $("tclear").onclick=()=>clearBlock(T); }
+/* passing the test clears the units: every word is set to ◯, except words missed in the test and words the learner flagged (those go to Review) */
+function clearBlock(T){ const blk=T.blk, key=cpKey(blk), miss=new Set(T.wrong.map(w=>w.es));
+  for(const w of cpWords(blk)) ST[w.es]=(miss.has(w.es)||T.flags.has(w.es))?"x":"o";
+  S.cp[key].cleared=true; const lu=blk.units[blk.units.length-1]; S.last=S.last||{}; S.last[grpKey()]={sec:blk.sec.id,j:lu.j};
+  T.applied=true; save(); checkBadges(); toast("✅",cpLabel(blk)+" cleared",T.flags.size||miss.size?(T.flags.size+miss.size)+" word(s) in Review":"Perfect — every word at ◯"); renderTestRes(); }
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&sheetW){ closeSheet(); return; }
   if(screen?.type!=="test"||!testS) return;

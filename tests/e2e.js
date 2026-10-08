@@ -23,19 +23,42 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   console.log("Checkpoint test");
   ok(await pg.locator("#cpt").count() === 1, "after unit 5 the done screen offers the checkpoint");
   await pg.click("#cpt"); await pg.waitForTimeout(300);
-  ok((await pg.innerText(".count")) === "1/20", "checkpoint has 20 questions");
+  ok((await pg.innerText(".count")) === "1/15", "checkpoint has 15 questions");
   ok(await pg.locator(".opt").count() === 4, "4 choices");
-  for (let i = 0; i < 25 && await pg.locator(".opt").count(); i++) {
-    await pg.locator(".opt").nth(i % 4).click(); await pg.waitForTimeout(120);
-    if (await pg.locator("#qn").count()) { await pg.click("#qn"); await pg.waitForTimeout(150); } else await pg.waitForTimeout(750);
-  }
-  const res = await body();
-  ok(/correct/.test(res) && /Not in this test \(30\)/.test(res), "results show score and the 30 untested words");
+  // answer every question: right = the correct option, wrong = any other option
+  const playTest = async right => {
+    for (let i = 0; i < 20 && await pg.locator(".opt").count(); i++) {
+      const ans = await pg.evaluate(() => testS.qs[testS.i].ans);
+      await pg.locator(".opt").nth(right ? ans : (ans + 1) % 4).click(); await pg.waitForTimeout(120);
+      if (await pg.locator("#qn").count()) { await pg.click("#qn"); await pg.waitForTimeout(150); } else await pg.waitForTimeout(750);
+    }
+  };
+  await playTest(false);
+  let res = await body();
+  ok(/0\s*\/ 15 correct · 12 needed/.test(res) && /Not in this test \(35\)/.test(res), "failing shows the score (12 of 15 needed) and the 35 untested words");
+  ok(await pg.locator("#tclear").count() === 0, "a failed test cannot clear the units");
   await pg.locator("[data-d]").last().click(); await pg.waitForTimeout(250);
   ok(await pg.locator("#sheet.show").count() === 1, "tapping a listed word opens the detail sheet");
   await pg.click("#shx"); await pg.waitForTimeout(150);
+  await pg.click("#tagain"); await pg.waitForTimeout(300);
+  await playTest(true);
+  ok(await pg.locator("#cklist li").count() === 35 && await pg.locator("#tclear").count() === 1, "passing lists the 35 untested words with a Clear button");
+  const flagged = await pg.evaluate(() => [...document.querySelectorAll("#cklist [data-ck]")].slice(0, 2).map(b => b.dataset.ck));
+  await pg.locator("#cklist [data-ck]").nth(0).click(); await pg.locator("#cklist [data-ck]").nth(1).click();
+  ok(/2 to Review/.test(await pg.innerText("#tclear")), "flagging words updates the Clear button");
+  await pg.click("#tclear"); await pg.waitForTimeout(300);
+  const st1 = await pg.evaluate(fl => { const blk = cpBlocks(sections()[0])[0], ws = cpWords(blk); return { n: ws.length, o: ws.filter(w => ST[w.es] === "o").length, x: ws.filter(w => ST[w.es] === "x").length, flagX: fl.every(e => ST[e] === "x"), cleared: !!cpRec(blk).cleared }; }, flagged);
+  ok(st1.n === 50 && st1.flagX && st1.cleared && st1.o + st1.x === 50, "clearing marks flagged words ✖ and the rest ◯");
+  await pg.click("#tagain"); await pg.waitForTimeout(300); await playTest(true);
+  await pg.click("#tclear"); await pg.waitForTimeout(300);
+  const st2 = await pg.evaluate(() => { const blk = cpBlocks(sections()[0])[0], ws = cpWords(blk); return ws.every(w => ST[w.es] === "o"); });
+  ok(st2, "flagging nothing makes all 5 units perfect");
   await pg.click("#tout"); await pg.waitForTimeout(250);
-  ok(/Best \d+\/20/.test(await pg.locator(".cp").first().innerText()), "checkpoint node shows the best score");
+  ok(/Cleared/.test(await pg.locator(".cp").first().innerText()), "checkpoint node shows Cleared");
+  // a block that has not been studied yet can be tested too (the test is a way to skip ahead)
+  await pg.locator(".cp").nth(1).click(); await pg.waitForTimeout(300);
+  ok(await pg.innerText(".count") === "1/15", "a later checkpoint (units not studied yet) can be opened");
+  await pg.evaluate(() => { testS = null; screen = null; go("learn"); });
 
   console.log("Quiz generation everywhere");
   const sim = await pg.evaluate(() => { const out = { qs: 0, short: 0, dup: 0 };
