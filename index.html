@@ -5096,7 +5096,10 @@ function nextUnit(){ for(const s of sections()) for(const u of unitsOf(s)) if(uS
 const allUnits=()=>{ const o=[]; for(const s of sections()) for(const u of unitsOf(s)) o.push(u); return o; };
 const grpKey=()=>curWorld()+"|"+S.grp.mode+(S.grp.mode==="pos"?"|"+S.grp.pos+"|"+S.grp.sort:"");
 function unitAfter(u){ const a=allUnits(), i=a.findIndex(x=>x.sec.id===u.sec.id&&x.j===u.j); return i>=0&&i+1<a.length?a[i+1]:null; }
-function upNext(){ const L=(S.last||{})[grpKey()];
+/* "last played" is stored as section + unit number + the unit's first word; if words were added since, find the unit that still holds that word */
+function lastPos(L){ if(!L||!L.w) return L; const s=sections().find(x=>x.id===L.sec); if(!s) return L;
+  const u=unitsOf(s).find(x=>x.words.some(w=>w.es===L.w)); return u?{sec:L.sec,j:u.j,w:L.w}:L; }
+function upNext(){ const L=lastPos((S.last||{})[grpKey()]);
   if(L){ const a=allUnits(), i=a.findIndex(x=>x.sec.id===L.sec&&x.j===L.j);
     if(i>=0){ if(!["done","gold"].includes(uState(a[i]))) return a[i]; if(i+1<a.length) return a[i+1]; } }
   return nextUnit(); }
@@ -5217,10 +5220,18 @@ const cpKey=blk=>curWorld()+"|"+blk.sec.id+"#"+blk.b+"|"+S.dir;
 const cpWords=blk=>blk.units.flatMap(u=>u.words);
 const cpFinished=blk=>blk.units.every(u=>["done","gold"].includes(uState(u)));
 const cpReady=blk=>true; /* the test can be taken any time: passing it clears the units */
-const cpRec=blk=>(S.cp||{})[cpKey(blk)];
+/* A checkpoint record is matched to a block by the WORDS it contains (r.ws), not by the block's position, so adding or reordering words doesn't attach a record to the wrong units.
+   Old records without r.ws are adopted by the block at their original position. Returns [key, record] or null. */
+function cpFind(blk){ const ws=cpWords(blk).map(w=>w.es), mine=new Set(ws), cp=S.cp||{}, pos=cpKey(blk); let best=null, bo=0;
+  for(const k in cp){ const p=k.split("|"); if(p[0]!==curWorld()||p[2]!==S.dir) continue; const r=cp[k];
+    if(!r.ws){ if(k!==pos) continue; r.ws=ws.slice(); }
+    let hit=0; for(const e of r.ws) if(mine.has(e)) hit++; const o=hit/Math.max(ws.length,r.ws.length);
+    if(o>bo){ bo=o; best=[k,r]; } }
+  return bo>=.6?best:null; }
+const cpRec=blk=>{ const f=cpFind(blk); return f?f[1]:undefined; };
 const cpLabel=blk=>"Units "+(blk.b*CP_EVERY+1)+"–"+(blk.b*CP_EVERY+blk.units.length);
 const cpOfUnit=u=>cpBlocks(u.sec)[Math.floor(u.j/CP_EVERY)];
-function cpDue(){ const L=(S.last||{})[grpKey()]; if(!L) return null; const s=sections().find(x=>x.id===L.sec); if(!s) return null;
+function cpDue(){ const L=lastPos((S.last||{})[grpKey()]); if(!L) return null; const s=sections().find(x=>x.id===L.sec); if(!s) return null;
   const blk=cpBlocks(s)[Math.floor(L.j/CP_EVERY)]; return blk&&cpFinished(blk)&&!cpRec(blk)?blk:null; }
 const cpNeed=n=>Math.ceil(n*CP_PASS-1e-9);
 function cpNodeHTML(blk){ if(!blk) return ""; const r=cpRec(blk), n=Math.min(CP_Q,cpWords(blk).length), cleared=r&&r.cleared, perfect=cleared&&cpWords(blk).every(w=>ST[w.es]==="o");
@@ -5260,8 +5271,8 @@ function answerTest(k){ const T=testS; if(!T||T.picked!==null) return; T.picked=
   const ex=exampleOf(w);
   $("qfb").innerHTML=`<p class="sub" style="margin:0">✖ Added to Review · <b>${esc(full(w))}</b> = ${esc(firstMeaning(w))}</p>${ex?`<p class="es">${esc(ex[0])}</p><p class="ent">${esc(ex[1])}</p>`:""}<button class="btnx" id="qn">${T.i+1<T.qs.length?"Next":"See results"}</button>`;
   $("qn").onclick=next; $("qn").focus(); }
-function finishTest(){ const T=testS, key=cpKey(T.blk), n=T.qs.length; S.cp=S.cp||{}; const prev=S.cp[key];
-  S.cp[key]={best:Math.max(prev?prev.best:0,T.score),n,last:T.score,cleared:!!(prev&&prev.cleared)}; if(T.score===n&&n>=10) S.perfect++; save();
+function finishTest(){ const T=testS, ws=cpWords(T.blk).map(w=>w.es), n=T.qs.length; S.cp=S.cp||{}; const f=cpFind(T.blk), key=f?f[0]:cpKey(T.blk)+"|"+ws[0], prev=f&&f[1]; T.cpkey=key;
+  S.cp[key]={best:Math.max(prev?prev.best:0,T.score),n,last:T.score,cleared:!!(prev&&prev.cleared),ws}; if(T.score===n&&n>=10) S.perfect++; save();
   const x=xpToday(); if(T.goalBefore<S.goal&&x>=S.goal&&!S.goalHit[today()]){ S.goalHit[today()]=1; save(); }
   checkBadges(); screen={type:"testres",back:screen.back}; render(); }
 function renderTestRes(){ const T=testS; if(!T){ screen=screen.back; return render(); }
@@ -5284,9 +5295,9 @@ function renderTestRes(){ const T=testS; if(!T){ screen=screen.back; return rend
     b.setAttribute("aria-pressed",on); b.parentNode.classList.toggle("flag",on); b.querySelector(".st").textContent=on?"✖":"☐"; $("tclear").textContent=clearLabel(); });
   if($("tclear")) $("tclear").onclick=()=>clearBlock(T); }
 /* passing the test clears the units: every word is set to ◯, except words missed in the test and words the learner flagged (those go to Review) */
-function clearBlock(T){ const blk=T.blk, key=cpKey(blk), miss=new Set(T.wrong.map(w=>w.es));
+function clearBlock(T){ const blk=T.blk, key=T.cpkey, miss=new Set(T.wrong.map(w=>w.es));
   for(const w of cpWords(blk)) ST[w.es]=(miss.has(w.es)||T.flags.has(w.es))?"x":"o";
-  S.cp[key].cleared=true; const lu=blk.units[blk.units.length-1]; S.last=S.last||{}; S.last[grpKey()]={sec:blk.sec.id,j:lu.j};
+  S.cp[key].cleared=true; const lu=blk.units[blk.units.length-1]; S.last=S.last||{}; S.last[grpKey()]={sec:blk.sec.id,j:lu.j,w:lu.words[0].es};
   T.applied=true; save(); checkBadges(); toast("✅",cpLabel(blk)+" cleared",T.flags.size||miss.size?(T.flags.size+miss.size)+" word(s) in Review":"Perfect — every word at ◯"); renderTestRes(); }
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&sheetW){ closeSheet(); return; }
@@ -5305,7 +5316,7 @@ sheetEl.addEventListener("click",e=>{ if(e.target===sheetEl){ closeSheet(); retu
   const a=e.target.closest("[data-say]"); if(a){ e.stopPropagation(); const k=a.dataset.say; if(k==="word") speak(sayText(w)); else if(DETAIL[w.es]&&a.dataset.i!=null) speak(DETAIL[w.es].s[+a.dataset.i][2]); return; }
   const t=e.target.closest(".w,.chip"); if(t){ e.stopPropagation(); popAnchor===t?hidePop():showPop(t); } });
 sheetEl.addEventListener("scroll",hidePop,{capture:true,passive:true});
-function startUnit(u){ S.last=S.last||{}; S.last[grpKey()]={sec:u.sec.id,j:u.j}; save(); const unseen=shuffle(u.words.filter(w=>!ST[w.es])), due=reviewOrder(u.words.filter(isDue));
+function startUnit(u){ S.last=S.last||{}; S.last[grpKey()]={sec:u.sec.id,j:u.j,w:u.words[0].es}; save(); const unseen=shuffle(u.words.filter(w=>!ST[w.es])), due=reviewOrder(u.words.filter(isDue));
   let list=unseen.length?unseen:due.length?due:shuffle(u.words);
   startStudy(list,unseen.length?"learn":"review",`${u.sec.title} · Unit ${u.j+1}`,u); }
 
@@ -5504,7 +5515,7 @@ function renderDone(){
   const x=xpToday(), hit=goalBefore<S.goal&&x>=S.goal;
   if(hit&&!S.goalHit[today()]){ S.goalHit[today()]=1; save(); }
   checkBadges();
-  const nu=curUnit?unitAfter(curUnit):null, nwd=curUnit&&!nu?worldAfter(curWorld()):null, cpb=curUnit?cpOfUnit(curUnit):null, cpNow=!!(cpb&&cpReady(cpb)&&!cpRec(cpb));
+  const nu=curUnit?unitAfter(curUnit):null, nwd=curUnit&&!nu?worldAfter(curWorld()):null, cpb=curUnit?cpOfUnit(curUnit):null, cpNow=!!(cpb&&cpFinished(cpb)&&!cpRec(cpb));
   $("view").innerHTML=`<div class="wrap done">
     <div class="xpbig">+${sessXP} XP</div>
     ${unitDone?`<h1 class="disp">${unitNow==="gold"?"👑 Unit mastered!":"✓ Unit complete!"}</h1><p class="sub">${esc(title)}</p>`:`<h1 class="disp">¡Bien hecho!</h1><p class="sub">${esc(title)}</p>`}

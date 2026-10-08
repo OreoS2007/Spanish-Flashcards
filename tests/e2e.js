@@ -55,6 +55,18 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   ok(st2, "flagging nothing makes all 5 units perfect");
   await pg.click("#tout"); await pg.waitForTimeout(250);
   ok(/Cleared/.test(await pg.locator(".cp").first().innerText()), "checkpoint node shows Cleared");
+  // records follow the block's words, not its position (so adding words later can't attach a record to the wrong units)
+  const moved = await pg.evaluate(() => { const bs = cpBlocks(sections()[0]), key = Object.keys(S.cp).find(k => S.cp[k].cleared);
+    S.cp["A1|moved#9|es"] = S.cp[key]; delete S.cp[key];            // pretend the block shifted to another position
+    const a = !!(cpRec(bs[0]) || {}).cleared, b = !!cpRec(bs[1]);
+    const rec = S.cp["A1|moved#9|es"]; delete rec.ws;               // an old-format record (no word list) at its original position
+    S.cp[cpKey(bs[0])] = rec; delete S.cp["A1|moved#9|es"];
+    const c = !!(cpRec(bs[0]) || {}).cleared && Array.isArray(rec.ws);
+    return { a, b, c }; });
+  ok(moved.a && !moved.b, "a record follows its words when the block moves, and doesn't match a different block");
+  ok(moved.c, "old-format records are adopted by the block at their position");
+  const lp = await pg.evaluate(() => { const s = sections()[0], us = unitsOf(s); return lastPos({ sec: s.id, j: 0, w: us[2].words[3].es }).j; });
+  ok(lp === 2, "\"last played\" finds its unit by word even if the unit number changed");
   // a block that has not been studied yet can be tested too (the test is a way to skip ahead)
   await pg.locator(".cp").nth(1).click(); await pg.waitForTimeout(300);
   ok(await pg.innerText(".count") === "1/15", "a later checkpoint (units not studied yet) can be opened");

@@ -45,7 +45,7 @@
 | `function sections(` / `unitsOf` / `uState` | グルーピング（頻度／品詞／トピック等）とユニット |
 | `function nextUnit(` / `unitAfter` / `upNext` / `worldAfter` | 「次」の決め方。完了画面の Next は直前のユニットの次、Learn の Next up は最後に遊んだ位置から続ける、次のワールドは順番どおり |
 | `/* ---------- learn (path)` | 道のり画面。5ユニットごとにチェックポイント（`cpNodeHTML`） |
-| `/* ---------- checkpoint tests` | `CP_EVERY=5, CP_Q=15, CP_PASS=.8`。`makeQuiz`（苦手優先で15問、同レベル・同品詞・意味が重ならない誤答）、`renderTest`、`renderTestRes`。**8割（15問中12問）で合格 → テストに出なかった35語がチェックリストで出て、覚えていない語にチェック → `clearBlock()` が5ユニットを「クリア」にする**（チェックした語とテストで間違えた語は ✖ で Review、それ以外は全部 ◯。チェック0・全問正解なら5ユニット完璧）。テストは未学習のブロックでもいつでも受けられる（先に進むための手段）。記録は `S.cp[key]={best,n,last,cleared}` |
+| `/* ---------- checkpoint tests` | `CP_EVERY=5, CP_Q=15, CP_PASS=.8`。`makeQuiz`（苦手優先で15問、同レベル・同品詞・意味が重ならない誤答）、`renderTest`、`renderTestRes`。**8割（15問中12問）で合格 → テストに出なかった35語がチェックリストで出て、覚えていない語にチェック → `clearBlock()` が5ユニットを「クリア」にする**（チェックした語とテストで間違えた語は ✖ で Review、それ以外は全部 ◯。チェック0・全問正解なら5ユニット完璧）。テストは未学習のブロックでもいつでも受けられる（先に進むための手段）。記録は `S.cp[key]={best,n,last,cleared,ws}`。**記録はブロックの位置ではなく、含まれる単語（`ws`）で対応づける**（`cpFind()`：単語の重なりが6割以上で同じブロックとみなす）ので、単語を足してユニットがずれても別のユニットに記録が付かない。「最後に遊んだユニット」`S.last[...]` も、ユニット番号に加えて先頭の単語 `w` を持ち、`lastPos()` が単語から探し直す。旧形式（`ws` なし）の記録は、元の位置のブロックが引き継ぐ |
 | `function openSheet(` | 一覧からタップしたときの詳細シート（`backHTML` を流用） |
 | `function isTarget(` / `function phraseHits(` / `function wrapWords(` | 例文中のターゲット語の判定。フレーズは縮約（al, del, conmigo）、語順の入れ替え、活用・性の変化にも対応 |
 | `function frontHTML(` / `function backHTML(` | カード表面・裏面 |
