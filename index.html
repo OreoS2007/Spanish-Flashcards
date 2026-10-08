@@ -5059,6 +5059,7 @@ const KEY="esfc-v2";
 const FRESH=()=>({st:{},st2:{},days:{},xpDays:{},xp:0,rev:0,perfect:0,badges:{},cj:0,tenses:["pres","pret"],dir:"es",goal:200,grp:{mode:"freq",pos:"noun",sort:"freq"},goalHit:{},world:null});
 let S=FRESH();
 try{ const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(FRESH(),JSON.parse(raw)); }catch(e){}
+if(S.grp.mode!=="freq") S.grp={mode:"freq",pos:"noun",sort:"freq"}; /* the Part of speech grouping was removed from the UI */
 let ST=S.dir==="en"?S.st2:S.st;
 function setDir(d){ S.dir=d; ST=d==="en"?S.st2:S.st; save(); }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
@@ -5175,9 +5176,7 @@ function renderLearn(){
   let html=`<div class="wrap">${topStrip()}
     <div class="worlds" role="group" aria-label="Worlds">${WORLDS.map(([c,n,ic])=>{ const ws=worldWords(c), k=cnt(ws), seen=ws.length-k.n, pct=ws.length?Math.round(seen/ws.length*100):0, gold=ws.length&&k.o===ws.length;
       return `<button class="world${c===cw?" on":""}${gold?" gold":""}" data-world="${c}" ${ws.length?"":"disabled"} aria-pressed="${c===cw}"><span class="wr">${ring(seen,ws.length||1,40,4,gold?"var(--gold)":"var(--yes)")}<em>${gold?"👑":ic}</em></span><b>${c}</b><small>${ws.length?pct+"%":"soon"}</small></button>`; }).join("")}</div>
-    <div class="wtitle"><b class="disp">${cw} · ${WORLDS.find(x=>x[0]===cw)[1]}</b><small>${worldWords(cw).filter(w=>!w.phr).length} words · ${worldWords(cw).filter(w=>w.phr).length} phrases · ${cnt(worldWords(cw)).o} at ◯</small></div>
-    <div class="grp">${chips([["freq","Frequency"],["pos","Part of speech"]],g.mode,"mode")}
-    ${g.mode==="pos"?chips(POS_OPTS,g.pos,"pos")+(SORTS[g.pos].length>1?chips(SORTS[g.pos],(SORTS[g.pos].find(s=>s[0]===g.sort)||SORTS[g.pos][0])[0],"sort"):""):""}</div>`;
+    <div class="wtitle"><b class="disp">${cw} · ${WORLDS.find(x=>x[0]===cw)[1]}</b><small>${worldWords(cw).filter(w=>!w.phr).length} words · ${worldWords(cw).filter(w=>w.phr).length} phrases · ${cnt(worldWords(cw)).o} at ◯</small></div>`;
   { const cd=cpDue(); if(cd) html+=`<div class="cpban"><span style="font-size:1.6rem">📝</span><div class="nl"><b>Checkpoint ready</b><small>${esc(cd.sec.title)} · ${cpLabel(cd)} · ${Math.min(CP_Q,cpWords(cd).length)} questions</small></div><button class="btnx" id="cpgo">Take test</button></div>`; }
   { const bd=backupDue(); if(bd) html+=`<div class="cpban"><span style="font-size:1.6rem">💾</span><div class="nl"><b>Time to back up your progress</b><small>${S.lastBackup?`Last backup was ${bd} days ago.`:`You haven't saved a backup yet.`}</small></div><button class="btnx" id="bkgo">Save backup</button><button class="btnx alt" id="bklater">Later</button></div>`; }
   if(nu){ const c=cnt(nu.words), left=c.n||nu.words.length-c.o;

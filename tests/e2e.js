@@ -85,9 +85,14 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   ok(sim.short === 0 && sim.dup === 0, `all ${sim.qs} simulated questions have 4 distinct choices`);
 
   console.log("Phrases & toolkit");
-  await pg.evaluate(() => { S.world = "A1"; S.grp = { mode: "pos", pos: "phrase", sort: "freq" }; save(); render(); });
+  await pg.evaluate(() => { S.world = "A1"; S.grp = { mode: "freq", pos: "noun", sort: "freq" }; save(); go("learn"); });
   await pg.waitForTimeout(200);
-  ok(/Phrases/.test(await body()), "Phrases filter works");
+  ok(!/Part of speech/i.test(await body()), "Learn has no Part of speech option");
+  await pg.evaluate(() => { const g = JSON.parse(localStorage.getItem("esfc-v2")); g.grp = { mode: "pos", pos: "noun", sort: "freq" }; localStorage.setItem("esfc-v2", JSON.stringify(g)); });
+  await pg.reload(); await pg.waitForTimeout(500);
+  ok(await pg.evaluate(() => S.grp.mode) === "freq", "a saved Part-of-speech setting falls back to Frequency");
+  await pg.evaluate(() => { S.world = "A1"; S.grp = { mode: "pos", pos: "phrase", sort: "freq" }; save(); render(); });
+  ok(/Phrases/.test(await body()), "Phrases are still reachable (Toolkit)");
   await pg.click("text=Toolkit"); await pg.waitForTimeout(250);
   ok(/Start drill \(10\)/.test(await body()), "conjugation drill is 10 questions");
 
