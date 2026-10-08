@@ -5556,9 +5556,19 @@ function rate(r){
   else { ST[w.es]=r; if(mode==="review")S.rev++; }
   save();
   const card=$("card"); $("s"+r).style.opacity=1; const dx=r==="o"?1:r==="x"?-1:0;
-  card.style.transition="transform .3s ease-in, opacity .3s"; card.style.transform=`translate(${dx*window.innerWidth}px,${r==="t"?-window.innerHeight*.8:40}px) rotate(${dx*25}deg)`; card.style.opacity="0";
-  setTimeout(()=>{ idx++; busy=false; if(idx<deck.length) checkBadges(); renderStudy(); },280);
+  pulse(r,card);
+  setTimeout(()=>{ card.style.transition="transform .28s ease-in, opacity .28s"; card.style.transform=`translate(${dx*window.innerWidth}px,${r==="t"?-window.innerHeight*.8:40}px) rotate(${dx*25}deg)`; card.style.opacity="0"; },PULSE_MS);
+  setTimeout(()=>{ idx++; busy=false; if(idx<deck.length) checkBadges(); renderStudy(); },PULSE_MS+270);
 }
+/* a short, quiet "hit" when you rate a card: the pressed button fills with its colour and bounces, the card swells a little and glows in that colour */
+const PULSE_MS=110;
+function pulse(r,card){ try{
+  const css=getComputedStyle(document.documentElement), col=css.getPropertyValue("--"+{o:"yes",t:"mid",x:"no"}[r]).trim(), btn=$("r"+r),
+        calm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(btn){ btn.style.background=col; btn.style.color="#fff"; if(!calm) btn.animate([{scale:1},{scale:1.16},{scale:1.05}],{duration:PULSE_MS+90,easing:"ease-out"}); }
+  if(!calm) card.animate([{scale:1},{scale:1.04}],{duration:PULSE_MS,easing:"ease-out",fill:"forwards"});
+  card.querySelectorAll(".face").forEach(fc=>fc.animate([{boxShadow:"0 0 0 0 "+col+"00"},{boxShadow:"0 0 0 5px "+col+"55, 0 0 22px 2px "+col+"44"}],{duration:PULSE_MS+60,easing:"ease-out",fill:"forwards"}));
+ }catch(e){} }
 
 /* ---------- popover ---------- */
 let popAnchor=null,popJustClosed=false;

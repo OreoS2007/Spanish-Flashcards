@@ -7,7 +7,7 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   const b = await chromium.launch(); const pg = await b.newPage({ viewport: { width: 400, height: 860 } });
   const errors = []; pg.on("pageerror", e => errors.push(String(e)));
   await pg.goto(file); await pg.waitForTimeout(700);
-  const rateAll = async () => { for (let i = 0; i < 40 && await pg.locator("#ro").count(); i++) { await pg.click("#ro"); await pg.waitForTimeout(310); } };
+  const rateAll = async () => { for (let i = 0; i < 40 && await pg.locator("#ro").count(); i++) { await pg.click("#ro"); await pg.waitForTimeout(430); } };
   const body = () => pg.innerText("body");
 
   console.log("Sessions & Next");
@@ -95,6 +95,16 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   ok(/Phrases/.test(await body()), "Phrases are still reachable (Toolkit)");
   await pg.click("text=Toolkit"); await pg.waitForTimeout(250);
   ok(/Start drill \(10\)/.test(await body()), "conjugation drill is 10 questions");
+
+  console.log("Rating feedback");
+  await pg.evaluate(() => { S.world = "A1"; save(); go("learn"); }); await pg.waitForTimeout(200);
+  await pg.locator(".path .node[data-u]").nth(5).click({ force: true }); await pg.waitForTimeout(300);
+  await pg.click("#rt"); await pg.waitForTimeout(40);
+  const fb = await pg.evaluate(() => ({ bg: getComputedStyle(document.getElementById("rt")).backgroundColor, anims: document.getAnimations().length }));
+  ok(fb.bg !== "rgb(255, 255, 255)" && fb.bg !== "rgba(0, 0, 0, 0)" && fb.anims > 0, "rating a card flashes its button and animates the card");
+  await pg.waitForTimeout(500);
+  ok((await pg.innerText(".count")).startsWith("2/"), "the next card still follows after the effect");
+  await pg.evaluate(() => { testS = null; screen = null; go("learn"); });
 
   console.log("Sound effects");
   await pg.evaluate(() => go("learn")); await pg.waitForTimeout(200);
