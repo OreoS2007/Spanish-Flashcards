@@ -40,6 +40,7 @@
 | 検索文字列 | 役割 |
 |---|---|
 | `const UNIT=10, LEVEL=100` | 1ユニット10枚、1パート100枚 |
+| `/* ---------- sound effects` | `SFX`（Web Audio で合成した効果音。`SFX.ok/mid/bad/flip/done/fail`）。`S.sound===false` でオフ。上のバー（`topStrip`）の `[data-snd]` ボタンで切り替え。色は `:root` の変数（`--cobalt` = 主役色、`--yes/--mid/--no` = ◯△✖ の色）で一括管理 |
 | `const KEY="esfc-v2"` / `const FRESH=` | 保存キーと状態 `S`。`st`（ES→EN の評価）`st2`（EN→ES）`last`（グルーピングごとの最後のユニット）`cp`（チェックポイントの成績）など |
 | `function worldWords(` | ワールド内のカード順。**フレーズを単語の間に均等に散らす** |
 | `function sections(` / `unitsOf` / `uState` | グルーピング（頻度／品詞／トピック等）とユニット |

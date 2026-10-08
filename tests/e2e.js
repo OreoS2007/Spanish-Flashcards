@@ -96,7 +96,18 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   await pg.click("text=Toolkit"); await pg.waitForTimeout(250);
   ok(/Start drill \(10\)/.test(await body()), "conjugation drill is 10 questions");
 
+  console.log("Sound effects");
+  await pg.evaluate(() => go("learn")); await pg.waitForTimeout(200);
+  ok(await pg.locator("[data-snd]").count() === 1, "the top bar has a sound on/off button");
+  await pg.click("[data-snd]");
+  ok(await pg.evaluate(() => S.sound === false) && /🔇/.test(await pg.innerText("[data-snd]")), "tapping it turns the sound off");
+  await pg.click("[data-snd]");
+  ok(await pg.evaluate(() => S.sound !== false) && /🔊/.test(await pg.innerText("[data-snd]")), "tapping again turns it on");
+  const sfxOk = await pg.evaluate(() => { try { for (const k of ["ok", "mid", "bad", "flip", "done", "fail"]) SFX[k](); return true; } catch (e) { return false; } });
+  ok(sfxOk, "every sound plays without errors");
+
   console.log("Backup");
+  await pg.evaluate(() => go("kit")); await pg.waitForTimeout(200);
   ok(/Save backup/.test(await body()), "Toolkit has a Backup card");
   const [dl] = await Promise.all([pg.waitForEvent("download"), pg.click("#bkx")]);
   const fs = require("fs"), tmp = require("path").join(require("os").tmpdir(), "esfc-backup-test.json");

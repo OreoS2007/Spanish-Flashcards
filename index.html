@@ -9,15 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#EEF2F8; --ink:#14213D; --muted:#5B6782; --card:#FFFFFF; --soft:#F3F6FC;
-  --cobalt:#1D4ED8; --tile:#DCE6FA; --yes:#1F8A5B; --mid:#C98A0B; --no:#C8323B; --line:#C9D3E6; --gold:#B7862B;
+  --bg:#FFF6EA; --ink:#3A2418; --muted:#8A6B58; --card:#FFFFFF; --soft:#FFEFDB;
+  --cobalt:#D9480F; --tile:#FFE1BF; --yes:#2E8B4E; --mid:#C98A0B; --no:#C2263B; --line:#EBD3B8; --gold:#B7862B;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
-  --bg:#0E1526; --ink:#E8EDF7; --muted:#9AA6BF; --card:#18223A; --soft:#1F2B47;
-  --cobalt:#8AAAFF; --tile:#223050; --yes:#3CC486; --mid:#F2B84B; --no:#FF6B73; --line:#2C3A5A; --gold:#E3B75A; } }
-:root[data-theme="dark"]{ --bg:#0E1526; --ink:#E8EDF7; --muted:#9AA6BF; --card:#18223A; --soft:#1F2B47;
-  --cobalt:#8AAAFF; --tile:#223050; --yes:#3CC486; --mid:#F2B84B; --no:#FF6B73; --line:#2C3A5A; --gold:#E3B75A; }
+  --bg:#1E130E; --ink:#FBEEDF; --muted:#C4A58F; --card:#2B1B13; --soft:#37241A;
+  --cobalt:#FF9A57; --tile:#4A2D1C; --yes:#5FCB8A; --mid:#F2B84B; --no:#FF7C84; --line:#4B3125; --gold:#E3B75A; } }
+:root[data-theme="dark"]{ --bg:#1E130E; --ink:#FBEEDF; --muted:#C4A58F; --card:#2B1B13; --soft:#37241A;
+  --cobalt:#FF9A57; --tile:#4A2D1C; --yes:#5FCB8A; --mid:#F2B84B; --no:#FF7C84; --line:#4B3125; --gold:#E3B75A; }
 *,*::before,*::after{box-sizing:inherit}
 html,body{height:100%;margin:0}
 body{background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -93,7 +93,7 @@ h1{font-size:1.7rem;margin:4px 0 2px} h2{font-size:1.2rem;margin:26px 0 10px}
 .card:focus-visible .face{box-shadow:0 0 0 3px var(--cobalt)}
 .inner{position:relative;width:100%;height:100%;transition:transform .45s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
 .card.flipped .inner{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;border-radius:22px;background:var(--card);border:1px solid var(--line);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 14px 30px -18px rgba(20,33,61,.45)}
+.face{position:absolute;inset:0;border-radius:22px;background:var(--card);border:1px solid var(--line);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 14px 30px -18px rgba(70,36,16,.38)}
 .front{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:26px 24px;
   background-image:radial-gradient(circle at 0 0,var(--tile) 0 40px,transparent 41px),radial-gradient(circle at 100% 100%,var(--tile) 0 40px,transparent 41px)}
 .pos{color:var(--muted);font-size:.9rem;margin-bottom:14px}
@@ -137,14 +137,14 @@ ol.senses{list-style:none;counter-reset:s;padding:0;margin:4px 0 0}
 .gest{text-align:center;color:var(--muted);font-size:.75rem}
 .done{text-align:center;padding-top:20px}
 .done .big{font-size:2.2rem;margin:4px 0 2px}
-#pop{position:fixed;z-index:60;max-width:270px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:0 16px 36px -14px rgba(20,33,61,.5);display:none}
+#pop{position:fixed;z-index:60;max-width:270px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:0 16px 36px -14px rgba(70,36,16,.42);display:none}
 #pop.show{display:block}
 #pop .pw{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.2rem;color:var(--cobalt)}
 #pop .pe{margin:6px 0 0;line-height:1.35} #pop .pe small{display:block;color:var(--muted);font-size:.78rem}
 #pop .audio{margin-top:10px}
 #toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 12px);transform:translate(-50%,-150%);z-index:70;background:var(--ink);color:var(--card);border-radius:14px;padding:10px 16px;display:flex;gap:10px;align-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:92vw}
 #toast.show{transform:translate(-50%,0)} #toast .ic{font-size:1.4rem}
-#modal{position:fixed;inset:0;z-index:80;background:rgba(10,16,32,.55);display:none;place-items:center;padding:24px}
+#modal{position:fixed;inset:0;z-index:80;background:rgba(40,20,10,.55);display:none;place-items:center;padding:24px}
 #modal.show{display:grid}
 #modal .box{background:var(--card);border-radius:24px;padding:28px 24px;text-align:center;max-width:340px;width:100%}
 #modal .bigmedal{width:120px;height:120px;margin:0 auto 14px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #F6DE9A, var(--gold) 70%);display:grid;place-items:center;font-family:"Bricolage Grotesque",sans-serif;font-size:2.6rem;font-weight:700;color:#5A3E07;animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
@@ -165,13 +165,14 @@ ol.senses{list-style:none;counter-reset:s;padding:0;margin:4px 0 0}
 .tool .row{margin:12px 0 4px}
 .cgw{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .warnbox{border-color:color-mix(in srgb,var(--no) 45%,var(--line))}
-.strip{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.strip{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .strip .stat{display:flex;align-items:center;gap:6px;font-size:.95rem}
 .strip .stat b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.15rem}
 .flame{filter:grayscale(1);opacity:.5} .flame.lit{filter:none;opacity:1}
 .strip .goal span{color:var(--muted);font-size:.85rem} .strip .goal span b{color:var(--ink)}
+.snd{margin-left:auto;border:1px solid var(--line);background:var(--card);border-radius:999px;width:30px;height:30px;font-size:.9rem;cursor:pointer;line-height:1} .snd+.dirs{margin-left:0}
 .dirs{margin-left:auto;display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
-.dirs button{border:0;background:none;padding:7px 11px;font-size:.8rem;cursor:pointer;color:var(--muted)}
+.dirs button{border:0;background:none;padding:7px 9px;font-size:.8rem;cursor:pointer;color:var(--muted)}
 .dirs button[aria-pressed="true"]{background:var(--cobalt);color:var(--card);font-weight:700}
 .grp .chips{margin:6px 0}
 .next{display:flex;align-items:center;gap:12px;background:var(--card);border:2px solid var(--cobalt);border-radius:20px;padding:14px 16px;margin:12px 0 18px}
@@ -255,7 +256,7 @@ ol.senses{list-style:none;counter-reset:s;padding:0;margin:4px 0 0}
 .cpban{display:flex;align-items:center;gap:12px;background:color-mix(in srgb,var(--mid) 12%,var(--card));border:2px solid var(--mid);border-radius:18px;padding:12px 14px;margin:0 0 12px}
 .cpban .nl{flex:1;min-width:0} .cpban small{display:block;color:var(--muted);font-size:.78rem}
 .quiz{max-width:460px;margin:0 auto;padding:10px 16px 24px}
-.qcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px 18px;text-align:center;margin:14px 0 16px;box-shadow:0 14px 30px -18px rgba(20,33,61,.45)}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px 18px;text-align:center;margin:14px 0 16px;box-shadow:0 14px 30px -18px rgba(70,36,16,.38)}
 .qcard .qw{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.9rem;color:var(--ink);margin:6px 0 10px;overflow-wrap:anywhere}
 .qcard .qw.en{font-size:1.35rem}
 .opts{display:grid;gap:10px}
@@ -266,7 +267,7 @@ ol.senses{list-style:none;counter-reset:s;padding:0;margin:4px 0 0}
 .opt:disabled{cursor:default}
 .qfb{margin-top:14px;text-align:center} .qfb .es{margin:6px 0 2px} .qfb .ent{margin:0 0 6px}
 .tres h2{font-size:1.05rem;margin:22px 0 4px;text-align:left} .tres p.sub.l{text-align:left;margin:0 0 8px}
-#sheet{position:fixed;inset:0;z-index:55;background:rgba(10,16,32,.45);display:none;align-items:flex-end;justify-content:center}
+#sheet{position:fixed;inset:0;z-index:55;background:rgba(40,20,10,.45);display:none;align-items:flex-end;justify-content:center}
 #sheet.show{display:flex}
 #sheet .sbox{background:var(--card);color:var(--ink);width:100%;max-width:520px;max-height:85vh;overflow-y:auto;border-radius:22px 22px 0 0;padding:14px 20px calc(24px + env(safe-area-inset-bottom,0px));overscroll-behavior:contain}
 #sheet .stop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}
@@ -5054,6 +5055,26 @@ if(HAS_TTS){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
 function speak(t){ if(!HAS_TTS)return; try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang="es-ES"; if(esVoice)u.voice=esVoice; u.rate=.88; speechSynthesis.speak(u);}catch(e){} }
 const dis=HAS_TTS?"":" disabled title=\"Speech isn't supported in this browser\"";
 
+/* ---------- sound effects (Quizlet-style chimes, synthesised with Web Audio: no files) ---------- */
+const SFX=(()=>{ let ctx=null;
+  const get=()=>{ try{ ctx=ctx||new (window.AudioContext||window.webkitAudioContext)(); if(ctx.state==="suspended") ctx.resume(); }catch(e){ ctx=null; } return ctx; };
+  const tone=(f,t0,dur,type,vol,f2)=>{ const c=get(); if(!c) return; const o=c.createOscillator(), g=c.createGain(), t=c.currentTime+t0;
+    o.type=type; o.frequency.setValueAtTime(f,t); if(f2) o.frequency.exponentialRampToValueAtTime(f2,t+dur);
+    g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.012); g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+dur+0.03); };
+  const play=fn=>()=>{ if(S.sound===false) return; try{ fn(); }catch(e){} };
+  return {
+    unlock:()=>{ if(S.sound!==false) get(); },
+    ok:play(()=>{ tone(659,0,.16,"sine",.22); tone(988,.09,.28,"sine",.22); }),                 /* ◯ / right answer: bright two-note chime */
+    mid:play(()=>{ tone(523,0,.14,"triangle",.18); }),                                           /* △ : one neutral blip */
+    bad:play(()=>{ tone(233,0,.26,"triangle",.24,150); }),                                       /* ✖ / wrong answer: low soft buzz */
+    flip:play(()=>{ tone(1100,0,.05,"sine",.07,700); }),                                         /* card flip: tiny tick */
+    done:play(()=>{ [523,659,784,1047].forEach((f,i)=>tone(f,i*.11,.3,"sine",.2)); }),           /* session / test complete: rising arpeggio */
+    fail:play(()=>{ tone(392,0,.2,"triangle",.2); tone(294,.16,.32,"triangle",.2); }) };          /* test not passed: two falling notes */
+})();
+document.addEventListener("pointerdown",()=>SFX.unlock(),{once:true,capture:true});
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-snd]"); if(!b) return; S.sound=S.sound===false; save();
+  document.querySelectorAll("[data-snd]").forEach(x=>x.textContent=S.sound===false?"🔇":"🔊"); SFX.ok(); });
 /* ---------- state ---------- */
 const KEY="esfc-v2";
 const FRESH=()=>({st:{},st2:{},days:{},xpDays:{},xp:0,rev:0,perfect:0,badges:{},cj:0,tenses:["pres","pret"],dir:"es",goal:200,grp:{mode:"freq",pos:"noun",sort:"freq"},goalHit:{},world:null});
@@ -5165,7 +5186,7 @@ const dirPill=()=>`<div class="dirs" role="group" aria-label="Direction"><button
 function bindDir(){ $("view").querySelectorAll("[data-dir]").forEach(b=>b.onclick=()=>{ setDir(b.dataset.dir); render(); }); }
 function topStrip(){ const x=xpToday();
   return `<div class="strip"><div class="stat"><span class="flame${S.days[today()]?" lit":""}">🔥</span><b>${streak()}</b></div>
-    <div class="stat goal">${ring(x,S.goal,34,5,"var(--mid)")}<span><b>${x}</b>/${S.goal} XP</span></div>${dirPill()}</div>`; }
+    <div class="stat goal">${ring(x,S.goal,34,5,"var(--mid)")}<span><b>${x}</b>/${S.goal} XP</span></div><button type="button" class="snd" data-snd aria-label="Sound effects on/off">${S.sound===false?"🔇":"🔊"}</button>${dirPill()}</div>`; }
 
 /* ---------- learn (path) ---------- */
 function renderLearn(){
@@ -5262,7 +5283,7 @@ function renderTest(){ const T=testS, q=T.qs[T.i], w=q.w, en=S.dir==="en", lab=x
   $("view").querySelectorAll(".opt").forEach(b=>b.onclick=()=>answerTest(+b.dataset.k)); }
 function answerTest(k){ const T=testS; if(!T||T.picked!==null) return; T.picked=k; const q=T.qs[T.i], ok=k===q.ans, w=q.w;
   S.days[today()]=(S.days[today()]||0)+1; S.xp+=XP_CARD; S.xpDays[today()]=(S.xpDays[today()]||0)+XP_CARD; T.xp+=XP_CARD;
-  if(ok) T.score++; else { T.wrong.push(w); ST[w.es]="x"; }
+  if(ok){ T.score++; SFX.ok(); } else { T.wrong.push(w); ST[w.es]="x"; SFX.bad(); }
   save();
   $("view").querySelectorAll(".opt").forEach((b,j)=>{ b.disabled=true; if(j===q.ans) b.classList.add("ok"); else if(j===k) b.classList.add("ng"); });
   const next=()=>{ if(testS!==T) return; T.i++; T.picked=null; if(T.i>=T.qs.length) finishTest(); else renderTest(); };
@@ -5273,7 +5294,7 @@ function answerTest(k){ const T=testS; if(!T||T.picked!==null) return; T.picked=
 function finishTest(){ const T=testS, ws=cpWords(T.blk).map(w=>w.es), n=T.qs.length; S.cp=S.cp||{}; const f=cpFind(T.blk), key=f?f[0]:cpKey(T.blk)+"|"+ws[0], prev=f&&f[1]; T.cpkey=key;
   S.cp[key]={best:Math.max(prev?prev.best:0,T.score),n,last:T.score,cleared:!!(prev&&prev.cleared),ws}; if(T.score===n&&n>=10) S.perfect++; save();
   const x=xpToday(); if(T.goalBefore<S.goal&&x>=S.goal&&!S.goalHit[today()]){ S.goalHit[today()]=1; save(); }
-  checkBadges(); screen={type:"testres",back:screen.back}; render(); }
+  checkBadges(); T.score>=T.need?SFX.done():SFX.fail(); screen={type:"testres",back:screen.back}; render(); }
 function renderTestRes(){ const T=testS; if(!T){ screen=screen.back; return render(); }
   const n=T.qs.length, pct=T.score/n, blk=T.blk, nu=unitAfter(blk.units[blk.units.length-1]), pass=T.score>=T.need, pending=pass&&!T.applied, nunits=blk.units.length;
   const row=w=>{ const s=ST[w.es]||"n"; return `<li><button data-d="${esc(w.es)}"><span class="st ${s}">${SYM[s]||"·"}</span><span><b>${esc(full(w))}</b></span><span class="en">${esc(firstMeaning(w))}</span></button></li>`; };
@@ -5513,7 +5534,7 @@ function renderDone(){
   const unitNow=curUnit?uState(curUnit):null, unitDone=curUnit&&!unitWasDone&&["done","gold"].includes(unitNow);
   const x=xpToday(), hit=goalBefore<S.goal&&x>=S.goal;
   if(hit&&!S.goalHit[today()]){ S.goalHit[today()]=1; save(); }
-  checkBadges();
+  checkBadges(); SFX.done();
   const nu=curUnit?unitAfter(curUnit):null, nwd=curUnit&&!nu?worldAfter(curWorld()):null, cpb=curUnit?cpOfUnit(curUnit):null, cpNow=!!(cpb&&cpFinished(cpb)&&!cpRec(cpb));
   $("view").innerHTML=`<div class="wrap done">
     <div class="xpbig">+${sessXP} XP</div>
@@ -5530,7 +5551,7 @@ function renderDone(){
 }
 function rate(r){
   if(busy||idx>=deck.length)return; busy=true; hidePop();
-  const w=deck[idx], xp=w.drill?5:XP_CARD; S.days[today()]=(S.days[today()]||0)+1; S.xp+=xp; S.xpDays[today()]=(S.xpDays[today()]||0)+xp; sessXP+=xp; tally[r]++;
+  r==="o"?SFX.ok():r==="x"?SFX.bad():SFX.mid(); const w=deck[idx], xp=w.drill?5:XP_CARD; S.days[today()]=(S.days[today()]||0)+1; S.xp+=xp; S.xpDays[today()]=(S.xpDays[today()]||0)+xp; sessXP+=xp; tally[r]++;
   if(w.drill){ if(r==="o")S.cj++; else if(!w.again) deck.push(Object.assign({},w,{again:true})); }
   else { ST[w.es]=r; if(mode==="review")S.rev++; }
   save();
@@ -5557,7 +5578,7 @@ function bindCard(w){
   const scroller=()=>card.classList.contains("flipped")?back:front;
   const scrollable=()=>{const s=scroller();return s.scrollHeight>s.clientHeight+2;};
   const setTA=()=>{ card.style.touchAction=scrollable()?"pan-y":"none"; };
-  const flip=()=>{ hidePop(); card.classList.toggle("flipped"); setTA(); };
+  const flip=()=>{ hidePop(); card.classList.toggle("flipped"); setTA(); SFX.flip(); };
   setTA(); back.addEventListener("scroll",hidePop,{passive:true}); front.addEventListener("scroll",hidePop,{passive:true});
   $("rf").onclick=()=>{flip();card.focus({preventScroll:true})};
   $("ro").onclick=()=>rate("o"); $("rt").onclick=()=>rate("t"); $("rx").onclick=()=>rate("x");
