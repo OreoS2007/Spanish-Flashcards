@@ -106,6 +106,17 @@ const fails = []; const ok = (cond, msg) => { console.log((cond ? "  ✓ " : "  
   ok((await pg.innerText(".count")).startsWith("2/"), "the next card still follows after the effect");
   await pg.evaluate(() => { testS = null; screen = null; go("learn"); });
 
+  console.log("Example hint shows every meaning");
+  const nSenses = await pg.evaluate(() => DETAIL["no"].s.length);
+  for (const dir of ["es", "en"]) {
+    await pg.evaluate(d => { setDir(d); screen = null; startStudy([BY["no"]], "browse", "test"); }, dir); await pg.waitForTimeout(300);
+    await pg.click("[data-hint=ex]"); await pg.waitForTimeout(150);
+    const nEx = await pg.locator("#hb .es").count();
+    ok(nSenses > 1 && nEx === nSenses, `${dir === "es" ? "ES → EN" : "EN → ES"}: Example shows one sentence per meaning (${nEx}/${nSenses})`);
+    await pg.evaluate(() => { exitStudy(); });
+  }
+  await pg.evaluate(() => { setDir("es"); screen = null; go("learn"); });
+
   console.log("Sound effects");
   await pg.evaluate(() => go("learn")); await pg.waitForTimeout(200);
   ok(await pg.locator("[data-snd]").count() === 1, "the top bar has a sound on/off button");

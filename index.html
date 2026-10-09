@@ -211,7 +211,7 @@ ol.senses{list-style:none;counter-reset:s;padding:0;margin:4px 0 0}
 .hintb{background:none;border:1px dashed var(--mid);color:var(--ink);border-radius:999px;padding:7px 14px;font-size:.85rem;cursor:pointer}
 .hintb.used{border-style:solid;opacity:.6}
 .hintbox{margin-top:14px;background:var(--soft);border-radius:12px;padding:10px 14px;text-align:left;width:100%}
-.hintbox .es{font-size:1rem} .blank{letter-spacing:1px;color:var(--cobalt);font-weight:700} .tgx{color:var(--cobalt);font-weight:700}
+.hintbox .es{font-size:1rem} .hintbox .exitem+.exitem,.hintbox .exrow+.exrow{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)} .exn{color:var(--muted);font-weight:700} .blank{letter-spacing:1px;color:var(--cobalt);font-weight:700} .tgx{color:var(--cobalt);font-weight:700}
 .note.cgn{background:color-mix(in srgb,var(--cobalt) 10%,var(--card))}
 .bword.big{font-size:2rem}
 .also{margin-top:12px} .also .chip{margin:0 6px 6px 0}
@@ -5474,6 +5474,9 @@ function wrapWords(text,w,opts={}){ const parts=text.split(TOKEN), hits=w.phr?ph
   return `<span class="w${tg?" tg":""}" data-w="${esc(p)}" tabindex="0" role="button">${esc(p)}</span>`; }).join(""); }
 const chips=(l,c)=>l.map(x=>`<button type="button" class="chip ${c}" data-w="${esc(x)}">${esc(x)}</button>`).join("");
 const exampleOf=w=>DETAIL[w.es]?[DETAIL[w.es].s[0][2],DETAIL[w.es].s[0][3]]:w.phr?[w.ex,w.exEn]:null;
+/* one example per meaning, in the order of the meanings (the "Example" hint shows all of them) */
+const examplesOf=w=>{ const D=DETAIL[w.es]; if(!D) return w.phr&&w.ex?[[w.ex,w.exEn]]:[]; const seen=new Set(); return D.s.map(s=>[s[2],s[3]]).filter(e=>e[0]&&!seen.has(e[0])&&seen.add(e[0])); };
+const exNum=(l,i)=>l.length>1?`<b class="exn">${i+1}.</b> `:"";
 const RP=["me","te","se","nos","os","se"];
 function conjHTML(es,openTense){ const T=TABLE[es]; if(!T)return""; const refl=es.endsWith("se");
   return `<div class="conj"><div class="clab">Conjugation</div>${TENSES.map(([k,l])=>T[k]?`<details${openTense===l?" open":""}><summary>${l}</summary><table>${T[k].map((f,i)=>`<tr><td>${["yo","tú","él/ella/usted","nosotros","vosotros","ellos/ustedes"][i]}</td><td>${refl?RP[i]+" ":""}<b>${esc(f)}</b></td></tr>`).join("")}</table></details>`:"").join("")}</div>`; }
@@ -5497,7 +5500,7 @@ function backHTML(w){
   return head+ff+cg+detailBody(w)+(kind(w)==="verb"?conjHTML(w.es,null):"");
 }
 function frontHTML(w){
-  const ex=exampleOf(w);
+  const ex=exampleOf(w), exs=examplesOf(w);
   if(w.drill) return `<div class="pos">conjugation drill</div><div class="word">${esc(w.form)}</div><div class="pos" style="margin:10px 0 0">Which verb? Who? Which tense?</div><button type="button" class="audio" data-say="word"${dis}>🔊</button>`;
   if(S.dir==="en"){
     const first=w.phr?w.disp.split(" ")[0]:w.es;
@@ -5505,14 +5508,14 @@ function frontHTML(w){
       <p class="qhint">Say it in Spanish</p>
       <div class="hints">${ex?`<button type="button" class="hintb" data-hint="ex">💡 Example</button>`:""}<button type="button" class="hintb" data-hint="letter">🔤 First letter</button></div>
       <div class="hintbox" id="hb" hidden></div>
-      <template id="h-ex">${ex?`<p class="es">${wrapWords(ex[0],w,{blank:true})}</p><p class="ent">${esc(ex[1])}</p>`:""}</template>
+      <template id="h-ex">${exs.map((e,i)=>`<div class="exitem"><p class="es">${exNum(exs,i)}${wrapWords(e[0],w,{blank:true})}</p><p class="ent">${esc(e[1])}</p></div>`).join("")}</template>
       <template id="h-letter"><p class="es"><b>${esc(first[0])}</b>${"·".repeat(Math.max(0,first.length-1))} <small>(${first.length} letters)</small></p></template>`;
   }
   return `<div class="pos">${esc(posLabel(w))}</div><div class="word${w.phr?" phr":""}">${art(w)?`<span class="art">${esc(art(w))}</span>`:""}${esc(w.phr?w.disp:w.es)}</div>
     <div class="tags">${w.ff?`<span class="ffb">⚠ False friend</span>`:""}${w.cog?`<span class="cgb">≈ looks like English</span>`:""}</div>
     <div class="hints"><button type="button" class="audio" data-say="word"${dis}>🔊 ${w.phr?"Phrase":"Word"}</button>${ex?`<button type="button" class="hintb" data-hint="ex">💡 Example</button>`:""}</div>
     <div class="hintbox" id="hb" hidden></div>
-    <template id="h-ex">${ex?`<div class="exrow"><p class="es">${wrapWords(ex[0],w,{noTargetTap:true})}</p><button type="button" class="audio" data-say="hex"${dis} aria-label="Listen to example">🔊</button></div>`:""}</template>`;
+    <template id="h-ex">${exs.map((e,i)=>`<div class="exrow"><p class="es">${exNum(exs,i)}${wrapWords(e[0],w,{noTargetTap:true})}</p><button type="button" class="audio" data-say="hex" data-i="${i}"${dis} aria-label="Listen to example ${i+1}">🔊</button></div>`).join("")}</template>`;
 }
 function renderStudy(){
   if(idx>=deck.length) return renderDone();
@@ -5596,7 +5599,7 @@ function bindCard(w){
     const h=e.target.closest("[data-hint]");
     if(h){ e.stopPropagation(); const hb=$("hb"); hb.innerHTML=document.getElementById("h-"+h.dataset.hint).innerHTML; hb.hidden=false; h.classList.add("used"); setTA(); return; }
     const a=e.target.closest("[data-say]");
-    if(a){ e.stopPropagation(); const k=a.dataset.say; if(k==="word")speak(w.drill?w.form:sayText(w)); else if(k==="pex")speak(w.ex); else if(k==="hex")speak(exampleOf(w)[0]); else speak(DETAIL[w.es].s[+a.dataset.i][2]); return; }
+    if(a){ e.stopPropagation(); const k=a.dataset.say; if(k==="word")speak(w.drill?w.form:sayText(w)); else if(k==="pex")speak(w.ex); else if(k==="hex")speak(examplesOf(w)[+a.dataset.i||0][0]); else speak(DETAIL[w.es].s[+a.dataset.i][2]); return; }
     const t=e.target.closest(".w,.chip"); if(t){ e.stopPropagation(); popAnchor===t?hidePop():showPop(t); }
   });
   card.addEventListener("keydown",e=>{ const t=e.target.closest(".w"); if(t&&(e.key==="Enter"||e.key===" ")){e.preventDefault();e.stopPropagation();showPop(t);} });
